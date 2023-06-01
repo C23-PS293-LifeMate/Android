@@ -38,11 +38,10 @@ class AuthViewModel: ViewModel() {
                     val responseBody = response.body()
                     if(responseBody != null && responseBody.message.equals("Login successful")){
                         _loginResult.postValue(response.body())
-                        _isError.value = "Login Berhasil"
                     }
                     else{
 //                        _isError.value = "ERROR ${response.code()} : ${response.message()}"
-                        _isError.value = "password atau email salah"
+                        _isError.value = "Password / email wrong"
                         Log.e(TAG, "onFailure: ${response.message()}")
                     }
                 }
@@ -70,11 +69,11 @@ class AuthViewModel: ViewModel() {
                     val responseBody = response.body()
                     if(responseBody != null && responseBody.message == "User Created"){
                         _registerResult.postValue(response.body())
-                        _isError.value = "Akun berhasil dibuat"
+                        _isError.value = "Register successful"
                     }
                 }else{
                     _isLoading.value = false
-                    _isError.value = response.message()
+                    _isError.value = response.body()?.message
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }

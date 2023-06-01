@@ -30,126 +30,125 @@
         app:layout_constraintTop_toBottomOf="@+id/logo_lifemate" />
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/custom_shadow_background"
+        android:elevation="10dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <EditText
+            android:id="@+id/edt_username"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/custom_edit_text"
+            android:drawableStart="@drawable/baseline_account_circle_24"
+            android:drawablePadding="12dp"
+            android:hint="Username"
+            android:paddingHorizontal="16dp" />
+
+
+        <com.example.lifemate.ui.customview.EmailEditText
+            android:id="@+id/edt_email"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/custom_edit_text"
+            android:drawableStart="@drawable/baseline_email_24"
+            android:drawablePadding="12dp"
+            android:paddingHorizontal="16dp" />
+
+        <com.example.lifemate.ui.customview.PwEditText
+            android:id="@+id/edt_pass"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/custom_edit_text"
+            android:drawableStart="@drawable/baseline_lock_24"
+            android:drawablePadding="12dp"
+            android:inputType="textPassword"
+            android:paddingHorizontal="16dp" />
+
+        <EditText
+            android:id="@+id/edt_birthdate"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/custom_edit_text"
+            android:drawableStart="@drawable/baseline_calendar_today_24"
+            android:drawablePadding="12dp"
+            android:focusableInTouchMode="false"
+            android:hint="Date of Birth"
+            android:paddingHorizontal="16dp" />
+
+        <Spinner
+            android:id="@+id/gender_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/custom_spinner"
+            android:drawableStart="@drawable/baseline_calendar_today_24"
+            android:spinnerMode="dropdown" />
+
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/custom_green_button"
+            android:enabled="true"
+            android:text="Sign up"
+            android:textSize="15sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/custom_shadow_background"
-            android:elevation="10dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginHorizontal="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_horizontal">
 
-            <EditText
-                android:id="@+id/edt_username"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:hint="Username"
-                android:paddingHorizontal="16dp"
-                android:drawablePadding="12dp"
-                android:background="@drawable/custom_edit_text"
-                android:drawableStart="@drawable/baseline_account_circle_24"/>
-
-
-            <com.example.lifemate.ui.customview.EmailEditText
-                android:id="@+id/edt_email"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:paddingHorizontal="16dp"
-                android:drawablePadding="12dp"
-                android:background="@drawable/custom_edit_text"
-                android:drawableStart="@drawable/baseline_email_24"/>
-
-            <com.example.lifemate.ui.customview.PwEditText
-                android:id="@+id/edt_pass"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:paddingHorizontal="16dp"
-                android:drawablePadding="12dp"
-                android:inputType="textPassword"
-                android:background="@drawable/custom_edit_text"
-                android:drawableStart="@drawable/baseline_lock_24" />
-
-            <EditText
-                android:id="@+id/edt_birthdate"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:hint="Date of Birth"
-                android:paddingHorizontal="16dp"
-                android:drawablePadding="12dp"
-                android:focusableInTouchMode="false"
-                android:background="@drawable/custom_edit_text"
-                android:drawableStart="@drawable/baseline_calendar_today_24"/>
-
-            <Spinner
-                android:id="@+id/gender_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:spinnerMode="dropdown"
-                android:background="@drawable/custom_spinner"
-                android:drawableStart="@drawable/baseline_calendar_today_24"/>
-
-
-            <Button
-                android:id="@+id/btn_register"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:enabled="true"
-                android:text="Sign up"
-                android:textSize="15sp"
-                android:background="@drawable/custom_green_button"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="4dp"
-                android:gravity="center_horizontal">
+                android:text="Already have an account?"
+                android:textColor="@color/dark_green"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Already have an account?"
-                    android:textColor="@color/dark_green"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_login"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginBottom="16dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:text="Sign in"
-                    android:textAlignment="center"
-                    android:textColor="@color/light_green"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
+            <TextView
+                android:id="@+id/tv_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="Sign in"
+                android:textAlignment="center"
+                android:textColor="@color/light_green"
+                android:textSize="16sp"
+                android:textStyle="bold" />
         </LinearLayout>
+
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/progressBar"
