@@ -18,7 +18,9 @@ import java.util.*
 
 class RegisterFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
-    private lateinit var binding: FragmentRegisterBinding
+    private var _binding: FragmentRegisterBinding? = null
+    private val binding get() = _binding!!
+
     private var genderText: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +31,7 @@ class RegisterFragment : Fragment(), AdapterView.OnItemSelectedListener {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentRegisterBinding.inflate(inflater, container, false)
+        _binding = FragmentRegisterBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -107,7 +109,7 @@ class RegisterFragment : Fragment(), AdapterView.OnItemSelectedListener {
             updateLable(calendar)
         }
 
-        binding!!.edtBirthdate.setOnClickListener{
+        binding.edtBirthdate.setOnClickListener{
             DatePickerDialog(requireActivity(), datepicker, year, month, date).show()
         }
     }
@@ -115,7 +117,7 @@ class RegisterFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun updateLable(calendar: Calendar){
         val myFormat = "yyyy-MM-dd"
         val sdf = SimpleDateFormat(myFormat, Locale.UK)
-        binding!!.edtBirthdate.setText(sdf.format(calendar.time))
+        binding.edtBirthdate.setText(sdf.format(calendar.time))
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -127,5 +129,9 @@ class RegisterFragment : Fragment(), AdapterView.OnItemSelectedListener {
         TODO("Not yet implemented")
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
 }
