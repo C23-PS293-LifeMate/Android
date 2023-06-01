@@ -77,6 +77,22 @@ class RegisterFragment : Fragment(), AdapterView.OnItemSelectedListener {
             }
         })
 
+        binding.edtBirthdate.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+
+            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if(s.isNotEmpty()){
+                    binding.edtUsername.setBackgroundResource(R.drawable.custom_edit_text)
+                }
+            }
+            override fun afterTextChanged(s: Editable) {
+                if(s.isNotEmpty()){
+                    binding.edtUsername.setBackgroundResource(R.drawable.custom_edit_text)
+                }
+            }
+        })
+
         authViewModel.isError.observe(viewLifecycleOwner) {
             //Nampilin error pake ini "it" parameter stringny
             val dialogFragment =
@@ -86,6 +102,10 @@ class RegisterFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 CustomDialogFragment::class.java.simpleName)
         }
 
+        authViewModel.isLoading.observe(viewLifecycleOwner) {
+            showLoading(it)
+        }
+
         binding.btnRegister.setOnClickListener{
             binding.apply {
                 val name = edtUsername.text.toString()
@@ -93,11 +113,15 @@ class RegisterFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 val password = edtPass.text.toString()
                 val dob = edtBirthdate.text.toString()
 
-                validateUsername(name)
-                validateEmail(email)
-                validatePassword(password)
-                validateBirhtdate(dob)
-                validateGender(genderText,gender)
+                val isValidName = validateUsername(name)
+                val isValidEmail = validateEmail(email)
+                val isValidPassword = validatePassword(password)
+                val isValidDob = validateBirhtdate(dob)
+                val isValidGender = validateGender(genderText,gender)
+
+               if(isValidName&&isValidEmail&&isValidPassword&&isValidDob&&isValidGender){
+                   authViewModel.registerResponse(name,email,password,dob,genderText)
+               }
             }
 
         }
@@ -184,7 +208,13 @@ class RegisterFragment : Fragment(), AdapterView.OnItemSelectedListener {
 //    }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
         genderText = parent?.getItemAtPosition(position).toString()
+        genderText = when(genderText){
+            "Male" -> "laki-laki"
+            "Female" -> "perempuan"
+            else -> genderText
+        }
         if (position == 1 || position == 2){
             binding.genderSpinner.setBackgroundResource(R.drawable.custom_edit_text)
         }
@@ -194,6 +224,8 @@ class RegisterFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onNothingSelected(parent: AdapterView<*>?) {
         TODO("Not yet implemented")
     }
+
+    private fun showLoading(isLoading: Boolean) {binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE}
 
     override fun onDestroyView() {
         super.onDestroyView()
