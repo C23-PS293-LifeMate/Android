@@ -56,6 +56,38 @@ class AuthViewModel: ViewModel() {
         })
     }
 
+    fun registerResponse(name: String, email: String, password: String, bod: String, gender: String){
+        _isLoading.value = true
+        val client = ApiConfig.getApiService().register(name, email, password, bod, gender)
+
+        client.enqueue(object : Callback<RegisterResponse>{
+            override fun onResponse(
+                call: Call<RegisterResponse>,
+                response: Response<RegisterResponse>
+            ) {
+                if(response.isSuccessful){
+                    _isLoading.value = false
+                    val responseBody = response.body()
+                    if(responseBody != null && responseBody.message == "User Created"){
+                        _registerResult.postValue(response.body())
+                        _isError.value = "Akun berhasil dibuat"
+                    }
+                }else{
+                    _isLoading.value = false
+                    _isError.value = response.message()
+                    Log.e(TAG, "onFailure: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
+                _isLoading.value = false
+                _isError.value = t.message
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+
+        })
+    }
+
     companion object {
         private const val TAG = "AuthViewModel"
     }
