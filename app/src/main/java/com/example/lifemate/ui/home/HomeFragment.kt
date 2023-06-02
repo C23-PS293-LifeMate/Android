@@ -1,5 +1,6 @@
 package com.example.lifemate.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.lifemate.R
 import com.example.lifemate.databinding.FragmentHistoryBinding
 import com.example.lifemate.databinding.FragmentHomeBinding
+import com.example.lifemate.ui.input.InputActivity
+import com.example.lifemate.ui.personaldata.PersonalDataActivity
 
 class HomeFragment : Fragment() {
 
@@ -37,6 +40,12 @@ class HomeFragment : Fragment() {
         val text:String = resources.getString(R.string.greeting, "Masbro")
 
         binding.tvGreet.setText(text)
+
+        binding.btnCheck.setOnClickListener {
+            Intent(requireActivity(), InputActivity::class.java).also {
+                startActivity(it)
+            }
+        }
 
 
 
