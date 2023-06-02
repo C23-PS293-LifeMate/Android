@@ -11,4 +11,19 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="greeting">Hi %s,\ni can help you to check your health this week.</string>
+    <string name="input_hint">Please fill this assesment for us to check your health.</string>
+    <string name="height">Height</string>
+    <string name="centimeter">Centimeter</string>
+    <string name="weight">Weight</string>
+    <string name="kilogram">Kilogram</string>
+    <string name="input_todo_text">How well do you complete your weekly to-do list?</string>
+    <string name="hint_todo_min">Not at all</string>
+    <string name="hint_todo_max">Very well</string>
+    <string name="input_help_text">How many people fo you help achieve a better life?</string>
+    <string name="hint_help_min">None</string>
+    <string name="hint_help_max">People or\nmore</string>
+    <string name="input_passion_text">How many hours do you spend everyday doing what you are passionate about?</string>
+    <string name="hint_passion_min">None</string>
+    <string name="hint_passion_max">Hours</string>
+    <string name="hint_reward_max">Times or more</string>
 </resources>
