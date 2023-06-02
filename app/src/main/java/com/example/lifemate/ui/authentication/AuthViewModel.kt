@@ -38,11 +38,10 @@ class AuthViewModel: ViewModel() {
                     val responseBody = response.body()
                     if(responseBody != null && responseBody.message.equals("Login successful")){
                         _loginResult.postValue(response.body())
-                        _isError.value = "Login Berhasil"
                     }
                     else{
 //                        _isError.value = "ERROR ${response.code()} : ${response.message()}"
-                        _isError.value = "password atau email salah"
+                        _isError.value = "Password / email wrong"
                         Log.e(TAG, "onFailure: ${response.message()}")
                     }
                 }
@@ -69,20 +68,22 @@ class AuthViewModel: ViewModel() {
                     _isLoading.value = false
                     val responseBody = response.body()
                     if(responseBody != null && responseBody.message == "User Created"){
+                        _isError.value = "Register successful"
                         _registerResult.postValue(response.body())
-                        _isError.value = "Akun berhasil dibuat"
+                    }else{
+                        _isError.value = response.body()?.message
                     }
                 }else{
                     _isLoading.value = false
-                    _isError.value = response.message()
-                    Log.e(TAG, "onFailure: ${response.message()}")
+                    _isError.value = response.body()?.message
+                    Log.e(TAG, "onFailure1: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
                 _isLoading.value = false
                 _isError.value = t.message
-                Log.e(TAG, "onFailure: ${t.message.toString()}")
+                Log.e(TAG, "onFailure2: ${t.message.toString()}")
             }
 
         })

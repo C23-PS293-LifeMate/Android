@@ -17,6 +17,7 @@ import com.example.lifemate.ui.main.MainActivity
 import com.example.lifemate.R
 import com.example.lifemate.databinding.FragmentLoginBinding
 import com.example.lifemate.ui.ViewModelFactory
+import com.example.lifemate.ui.customview.CustomDialogFragment
 import com.example.lifemate.ui.customview.EmailEditText
 
 
@@ -60,7 +61,7 @@ class LoginFragment : Fragment() {
             }
         }
 
-        binding!!.edtPass.addTextChangedListener(object : TextWatcher {
+        binding.edtPass.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
@@ -68,9 +69,9 @@ class LoginFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if(s.toString().isNotEmpty()){
                     if(s.toString().length < 8){
-                        binding!!.edtlPass.setPasswordVisibilityToggleEnabled(false)
+                        binding.edtlPass.setPasswordVisibilityToggleEnabled(false)
                     }else{
-                        binding!!.edtlPass.setPasswordVisibilityToggleEnabled(true)
+                        binding.edtlPass.setPasswordVisibilityToggleEnabled(true)
                     }
                 }
             }
@@ -95,8 +96,13 @@ class LoginFragment : Fragment() {
 
         }
 
-        authViewModel.isError.observe(viewLifecycleOwner){
-            Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+        authViewModel.isError.observe(viewLifecycleOwner) {
+            //Nampilin error pake ini "it" parameter stringny
+            val dialogFragment =
+                CustomDialogFragment.newInstance(it)
+            dialogFragment.show(
+                childFragmentManager,
+                CustomDialogFragment::class.java.simpleName)
         }
 
         authViewModel.isLoading.observe(viewLifecycleOwner) {
