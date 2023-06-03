@@ -29,7 +29,7 @@ class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
-    private val authViewModel by viewModels<AuthViewModel>()
+    private val profileViewModel by viewModels<ProfileViewModel>()
     private val userViewModel by viewModels<UserViewModel> {
         ViewModelFactory.getInstance(requireActivity())
     }
@@ -50,15 +50,15 @@ class ProfileFragment : Fragment() {
 
         userViewModel.getUserToken().observe(viewLifecycleOwner) { utoken ->
             userViewModel.getUserId().observe(viewLifecycleOwner) { uid ->
-                authViewModel.getUserById(utoken, uid.toString())
-                authViewModel.userResult.observe(viewLifecycleOwner){
+                profileViewModel.getUserById(utoken, uid.toString())
+                profileViewModel.userResult.observe(viewLifecycleOwner){
                     binding.tvUsername.text = it.name
                     binding.tvEmail.text = it.email
                 }
             }
         }
 
-        authViewModel.isError.observe(viewLifecycleOwner) {
+        profileViewModel.isError.observe(viewLifecycleOwner) {
             val dialogFragment =
                 CustomDialogFragment.newInstance(it)
             dialogFragment.show(
@@ -66,7 +66,7 @@ class ProfileFragment : Fragment() {
                 CustomDialogFragment::class.java.simpleName)
         }
 
-        authViewModel.isLoading.observe(viewLifecycleOwner){
+        profileViewModel.isLoading.observe(viewLifecycleOwner){
             showLoading(it)
         }
 
