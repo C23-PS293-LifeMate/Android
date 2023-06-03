@@ -47,7 +47,6 @@ class PwEditText : AppCompatEditText {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        hint = "Password"
         textAlignment = View.TEXT_ALIGNMENT_VIEW_START
         maxLines = 1
     }

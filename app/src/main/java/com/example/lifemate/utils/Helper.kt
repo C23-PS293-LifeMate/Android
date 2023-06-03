@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Build
 import android.widget.EditText
 import androidx.annotation.RequiresApi
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -13,17 +14,17 @@ import java.util.*
 object Helper {
     var uid = -1
     var token = ""
+    private const val DATE_FORMAT = "yyyy-MM-dd"
 
     fun setDate(context: Context, edt:EditText){
-        val myFormat = "yyyy-MM-dd"
-        val sdf = SimpleDateFormat(myFormat, Locale.UK)
+        val sdf = SimpleDateFormat(DATE_FORMAT, Locale.UK)
         var calendar = Calendar.getInstance()
 
         val month = calendar.get(Calendar.MONTH)
         val year = calendar.get(Calendar.YEAR)
         val date = calendar.get(Calendar.DAY_OF_MONTH)
 
-        val datepicker = DatePickerDialog.OnDateSetListener{ view, year, month, dayOfMonth ->
+        val datepicker = DatePickerDialog.OnDateSetListener{ _, year, month, dayOfMonth ->
             calendar.set(Calendar.YEAR, year)
             calendar.set(Calendar.MONTH, month)
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
@@ -33,12 +34,48 @@ object Helper {
         DatePickerDialog(context, datepicker, year, month, date).show()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun formatDate(date: String): String{
-        val formatter: DateTimeFormatter =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.CANADA_FRENCH)
-        val date: LocalDateTime = LocalDateTime.parse(date.toString(), formatter)
-        return date.toString()
+    fun getCurrentDate(): Calendar {
+        return Calendar.getInstance()
     }
+
+    fun getAge(birthDateStr: String): Int {
+        val currentDate: Calendar = getCurrentDate()
+        val birthDate = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
+        birthDate.time = dateFormat.parse(birthDateStr) as Date
+
+        val years = currentDate.get(Calendar.YEAR) - birthDate.get(Calendar.YEAR)
+        val currentMonth = currentDate.get(Calendar.MONTH)
+        val birthMonth = birthDate.get(Calendar.MONTH)
+
+        if (currentMonth < birthMonth) {
+            return years - 1
+        } else if (currentMonth == birthMonth) {
+            val currentDay = currentDate.get(Calendar.DAY_OF_MONTH)
+            val birthDay = birthDate.get(Calendar.DAY_OF_MONTH)
+
+            if (currentDay < birthDay) {
+                return years - 1
+            }
+        }
+
+        return years
+    }
+
+    fun String.withDateFormat(): String {
+        val originalFormatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+        val parsedDate: Date = originalFormatter.parse(this) as Date
+
+        val newFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        return newFormatter.format(parsedDate)
+    }
+
+//    @RequiresApi(Build.VERSION_CODES.O)
+//    fun formatDate(date: String): String{
+//        val formatter: DateTimeFormatter =
+//            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.CANADA_FRENCH)
+//        val date: LocalDateTime = LocalDateTime.parse(date.toString(), formatter)
+//        return date.toString()
+//    }
 
 }

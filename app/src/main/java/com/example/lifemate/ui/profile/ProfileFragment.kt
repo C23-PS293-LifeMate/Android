@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import com.example.lifemate.databinding.FragmentProfileBinding
 import com.example.lifemate.ui.ViewModelFactory
 import com.example.lifemate.ui.authentication.UserViewModel
+import com.example.lifemate.ui.changepass.ChangePassowordActivity
 import com.example.lifemate.ui.customview.CustomDialogFragment
 import com.example.lifemate.ui.personaldata.PersonalDataActivity
 import com.example.lifemate.utils.Helper
@@ -59,6 +60,12 @@ class ProfileFragment : Fragment() {
 
         binding.btnPersonalData.setOnClickListener {
             Intent(requireActivity(), PersonalDataActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        binding.btnChangePass.setOnClickListener {
+            Intent(requireActivity(), ChangePassowordActivity::class.java).also {
                 startActivity(it)
             }
         }

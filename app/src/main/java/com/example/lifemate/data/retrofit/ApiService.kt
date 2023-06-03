@@ -1,9 +1,6 @@
 package com.example.lifemate.data.retrofit
 
-import com.example.lifemate.data.response.LoginResponse
-import com.example.lifemate.data.response.RegisterResponse
-import com.example.lifemate.data.response.UpdateResponse
-import com.example.lifemate.data.response.UserResponse
+import com.example.lifemate.data.response.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -35,6 +32,15 @@ interface ApiService {
         @Field("birthDate") birthDate: String,
         @Field("gender") gender: String
     ): Call<UpdateResponse>
+
+    @FormUrlEncoded
+    @POST("changePassword")
+    fun changePassword(
+        @Header("Authorization") token: String,
+        @Field("idUser") idUser: Int,
+        @Field("currentPassword") currentPassword: String,
+        @Field("newPassword") newPassword: String
+    ): Call<ChangePasswordResponse>
 
     @GET("getUserById/{id}")
     fun getUserById(
