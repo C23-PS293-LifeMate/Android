@@ -16,6 +16,8 @@ import com.example.lifemate.databinding.ActivityMainBinding
 import com.example.lifemate.ui.ViewModelFactory
 import com.example.lifemate.ui.authentication.AuthenticationActivity
 import com.example.lifemate.ui.authentication.UserViewModel
+import com.example.lifemate.utils.Helper
+import com.example.lifemate.utils.Helper.token
 
 class MainActivity : AppCompatActivity() {
 
@@ -48,9 +50,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
-        mainViewModel.getUserToken().observe(this){token ->
-            if (token != "token") {
-                val token = token
+        mainViewModel.getUserToken().observe(this){Token ->
+            if (Token != "token") {
+                token = Token
+                mainViewModel.getUserUid().observe(this){
+                    if(it != -1){
+                        Helper.uid = it
+                    }else {
+                        startActivity(Intent(this@MainActivity, AuthenticationActivity::class.java))
+                        finish()
+                    }
+                }
             }else{
                 startActivity(Intent(this@MainActivity, AuthenticationActivity::class.java))
                 finish()

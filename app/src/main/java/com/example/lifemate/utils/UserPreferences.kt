@@ -1,9 +1,12 @@
 package com.example.lifemate.utils
 
 import android.content.Context
+import android.service.autofill.UserData
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.lifemate.ui.authentication.UserViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -16,11 +19,6 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
 
     fun getUserId(): Flow<Int> = dataStore.data.map { it[uid] ?: -1 }
 
-    fun getUserData(): Flow<Any> =
-        dataStore.data.map {
-            it[token] ?: "token"
-            it[uid] ?: -1
-        }
 
     fun getUserToken(): Flow<String> = dataStore.data.map { it[token] ?: "token" }
 

@@ -15,14 +15,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.lifemate.R
 import com.example.lifemate.databinding.ActivityPersonalDataBinding
 import com.example.lifemate.ui.ViewModelFactory
-import com.example.lifemate.ui.authentication.AuthViewModel
 import com.example.lifemate.ui.authentication.UserViewModel
 import com.example.lifemate.ui.customview.CustomDialogFragment
 import com.example.lifemate.ui.profile.ProfileViewModel
 import com.example.lifemate.utils.Helper
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import com.example.lifemate.utils.Helper.uid
 import java.util.*
 
 class PersonalDataActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
@@ -31,9 +28,9 @@ class PersonalDataActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
     private var genderText: String = ""
 
     private val profileViewModel by viewModels<ProfileViewModel>()
-    private val userViewModel by viewModels<UserViewModel> {
-        ViewModelFactory.getInstance(this)
-    }
+//    private val userViewModel by viewModels<UserViewModel> {
+//        ViewModelFactory.getInstance(this)
+//    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,35 +79,30 @@ class PersonalDataActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
             }
         })
 
-        userViewModel.getUserToken().observe(this){utoken ->
-            userViewModel.getUserId().observe(this){uid ->
 
-                profileViewModel.getUserById(utoken, uid.toString())
-                profileViewModel.userResult.observe(this){
-                    binding.edtUsername.setText(it.name)
-                    binding.edtEmail.setText(it.email)
-                    binding.edtBirthdate.setText(Helper.formatDate(it.birthDate.toString()))
-                    binding.genderSpinner.setSelection(if(it.gender == "laki-laki") 1 else 2)
+        profileViewModel.getUserById(Helper.token, uid.toString())
+        profileViewModel.userResult.observe(this){
+            binding.edtUsername.setText(it.name)
+            binding.edtEmail.setText(it.email)
+            binding.edtBirthdate.setText(Helper.formatDate(it.birthDate.toString()))
+            binding.genderSpinner.setSelection(if(it.gender == "laki-laki") 1 else 2)
+        }
+
+        binding.btnSave.setOnClickListener{
+            val name = binding.edtUsername.text.toString()
+            val email = binding.edtEmail.text.toString()
+            val dob = binding.edtBirthdate.text.toString()
+
+            val isValidName = validateUsername(name)
+            val isValidEmail = validateEmail(email)
+            val isValidDob = validateBirthdate(dob)
+            val isValidGender = validateGender(genderText,gender)
+
+            if(isValidName&&isValidEmail&&isValidDob&&isValidGender){
+                profileViewModel.UpdateResponse(Helper.token, uid, name, email, dob, genderText)
+                profileViewModel.toPage.observe(this){
+                    if(it == true) finish()
                 }
-
-                binding.btnSave.setOnClickListener{
-                    val name = binding.edtUsername.text.toString()
-                    val email = binding.edtEmail.text.toString()
-                    val dob = binding.edtBirthdate.text.toString()
-
-                    val isValidName = validateUsername(name)
-                    val isValidEmail = validateEmail(email)
-                    val isValidDob = validateBirthdate(dob)
-                    val isValidGender = validateGender(genderText,gender)
-
-                    if(isValidName&&isValidEmail&&isValidDob&&isValidGender){
-                        profileViewModel.UpdateResponse(utoken, uid, name, email, dob, genderText)
-                        profileViewModel.toPage.observe(this){
-                            if(it == true) finish()
-                        }
-                    }
-                }
-
             }
         }
 

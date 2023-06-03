@@ -19,6 +19,7 @@ import com.example.lifemate.databinding.FragmentLoginBinding
 import com.example.lifemate.ui.ViewModelFactory
 import com.example.lifemate.ui.customview.CustomDialogFragment
 import com.example.lifemate.ui.customview.EmailEditText
+import com.example.lifemate.utils.Helper
 
 
 class LoginFragment : Fragment() {
@@ -49,11 +50,18 @@ class LoginFragment : Fragment() {
                 it.token,
                 it.idUser
             )
+            Helper.token = it.token
+            Helper.uid = it.idUser
+        }
+
+        userViewModel.getUserId().observe(viewLifecycleOwner){
+            Helper.uid = it
         }
 
         userViewModel.getUserToken().observe(viewLifecycleOwner) { token ->
             if (token != "token") {
 
+                Helper.token = token
                 Intent(requireActivity(), MainActivity::class.java).also {
                     it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(it)
