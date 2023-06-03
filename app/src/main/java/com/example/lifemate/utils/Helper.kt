@@ -11,6 +11,8 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 object Helper {
+    var uid = -1
+    var token = ""
 
     fun setDate(context: Context, edt:EditText){
         val myFormat = "yyyy-MM-dd"

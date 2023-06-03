@@ -4,14 +4,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.lifemate.data.response.LoginResponse
 import com.example.lifemate.data.response.UpdateResponse
 import com.example.lifemate.data.response.UserResponse
 import com.example.lifemate.data.retrofit.ApiConfig
-import com.example.lifemate.ui.authentication.AuthViewModel
-import com.example.lifemate.utils.UserPreferences
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
