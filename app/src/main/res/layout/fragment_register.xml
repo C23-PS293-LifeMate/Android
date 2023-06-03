@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:textColor="@color/dark_green"
-        android:text="Register"
+        android:text="@string/register"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +52,7 @@
             android:background="@drawable/custom_edit_text"
             android:drawableStart="@drawable/baseline_account_circle_24"
             android:drawablePadding="12dp"
-            android:hint="Username"
+            android:hint="@string/username"
             android:paddingHorizontal="16dp" />
 
 
@@ -63,23 +63,32 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:inputType="textEmailAddress"
             android:background="@drawable/custom_edit_text"
             android:drawableStart="@drawable/baseline_email_24"
             android:drawablePadding="12dp"
             android:paddingHorizontal="16dp" />
 
-        <com.example.lifemate.ui.customview.PwEditText
-            android:id="@+id/edt_pass"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtl_pass"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginStart="16dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/custom_edit_text"
-            android:drawableStart="@drawable/baseline_lock_24"
-            android:drawablePadding="12dp"
-            android:inputType="textPassword"
-            android:paddingHorizontal="16dp" />
+            app:passwordToggleEnabled="false"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.example.lifemate.ui.customview.PwEditText
+                android:id="@+id/edt_pass"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@drawable/custom_edit_text"
+                android:drawableStart="@drawable/baseline_lock_24"
+                android:drawablePadding="12dp"
+                android:inputType="textPassword"
+                android:paddingHorizontal="16dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <EditText
             android:id="@+id/edt_birthdate"
@@ -92,7 +101,7 @@
             android:drawableStart="@drawable/baseline_calendar_today_24"
             android:drawablePadding="12dp"
             android:focusableInTouchMode="false"
-            android:hint="Date of Birth"
+            android:hint="@string/date_of_birth"
             android:paddingHorizontal="16dp" />
 
         <Spinner
@@ -116,7 +125,7 @@
             android:layout_marginEnd="16dp"
             android:background="@drawable/custom_green_button"
             android:enabled="true"
-            android:text="Sign up"
+            android:text="@string/sign_up"
             android:textSize="15sp" />
 
         <LinearLayout
@@ -129,7 +138,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Already have an account?"
+                android:text="@string/already_have_an_account"
                 android:textColor="@color/dark_green"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -141,7 +150,7 @@
                 android:layout_marginStart="3dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="Sign in"
+                android:text="@string/sign_in"
                 android:textAlignment="center"
                 android:textColor="@color/light_green"
                 android:textSize="16sp"

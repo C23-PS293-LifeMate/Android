@@ -22,9 +22,6 @@ class ViewModelFactory private constructor(
             modelClass.isAssignableFrom(UserViewModel::class.java) -> {
                 UserViewModel(pref) as T
             }
-            modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
-                ProfileViewModel(pref) as T
-            }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
         /*if (modelClass.isAssignableFrom(UserViewModel::class.java)) {

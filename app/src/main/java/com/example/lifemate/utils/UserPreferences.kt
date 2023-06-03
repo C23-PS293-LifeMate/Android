@@ -10,23 +10,17 @@ import kotlinx.coroutines.flow.map
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
 class UserPreferences private constructor(private val dataStore: DataStore<Preferences>){
-    private val token = stringPreferencesKey("Token")
-    private val uid = intPreferencesKey("UID")
-    private val isLogin = booleanPreferencesKey("false")
+    val token = stringPreferencesKey("Token")
+    val uid = intPreferencesKey("UID")
+//    private val isLogin = booleanPreferencesKey("false")
 
-    fun getUser(): Flow<Any>{
-        return dataStore.data.map {
+    fun getUserId(): Flow<Int> = dataStore.data.map { it[uid] ?: -1 }
+
+    fun getUserData(): Flow<Any> =
+        dataStore.data.map {
             it[token] ?: "token"
-            it[isLogin] ?: false
+            it[uid] ?: -1
         }
-    }
-
-    suspend fun login(token: String){
-        dataStore.edit {
-            it[this.token] = token
-            it[isLogin] = true
-        }
-    }
 
     fun getUserToken(): Flow<String> = dataStore.data.map { it[token] ?: "token" }
 
