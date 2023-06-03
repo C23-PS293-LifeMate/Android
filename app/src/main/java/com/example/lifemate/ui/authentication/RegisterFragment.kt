@@ -1,6 +1,7 @@
 package com.example.lifemate.ui.authentication
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -77,6 +78,26 @@ class RegisterFragment : Fragment(), AdapterView.OnItemSelectedListener {
             }
         })
 
+        binding.edtPass.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if(s.toString().isNotEmpty()){
+                    if(s.toString().length < 8){
+                        binding.edtlPass.setPasswordVisibilityToggleEnabled(false)
+                    }else{
+                        binding.edtlPass.setPasswordVisibilityToggleEnabled(true)
+                    }
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+        })
+
         binding.edtBirthdate.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
 
@@ -93,6 +114,31 @@ class RegisterFragment : Fragment(), AdapterView.OnItemSelectedListener {
             }
         })
 
+        binding.btnRegister.setOnClickListener{
+            val name = binding.edtUsername.text.toString()
+            val email = binding.edtEmail.text.toString()
+            val password = binding.edtPass.text.toString()
+            val dob = binding.edtBirthdate.text.toString()
+
+            val isValidName = validateUsername(name)
+            val isValidEmail = validateEmail(email)
+            val isValidPassword = validatePassword(password)
+            val isValidDob = validateBirthdate(dob)
+            val isValidGender = validateGender(genderText,gender)
+
+            if(isValidName&&isValidEmail&&isValidPassword&&isValidDob&&isValidGender){
+                authViewModel.registerResponse(name,email,password,dob,genderText)
+                authViewModel.toPage.observe(viewLifecycleOwner){
+                    if (it == true){
+                        parentFragmentManager.beginTransaction().apply {
+                            replace(R.id.container, LoginFragment(), LoginFragment::class.java.simpleName)
+                            commit()
+                        }
+                    }
+                }
+            }
+        }
+
         authViewModel.isError.observe(viewLifecycleOwner) {
             //Nampilin error pake ini "it" parameter stringny
             val dialogFragment =
@@ -105,27 +151,6 @@ class RegisterFragment : Fragment(), AdapterView.OnItemSelectedListener {
         authViewModel.isLoading.observe(viewLifecycleOwner) {
             showLoading(it)
         }
-
-        binding.btnRegister.setOnClickListener{
-            binding.apply {
-                val name = edtUsername.text.toString()
-                val email = edtEmail.text.toString()
-                val password = edtPass.text.toString()
-                val dob = edtBirthdate.text.toString()
-
-                val isValidName = validateUsername(name)
-                val isValidEmail = validateEmail(email)
-                val isValidPassword = validatePassword(password)
-                val isValidDob = validateBirhtdate(dob)
-                val isValidGender = validateGender(genderText,gender)
-
-               if(isValidName&&isValidEmail&&isValidPassword&&isValidDob&&isValidGender){
-                   authViewModel.registerResponse(name,email,password,dob,genderText)
-               }
-            }
-
-        }
-
 
     }
     private fun validateUsername(email: String): Boolean {
@@ -173,7 +198,7 @@ class RegisterFragment : Fragment(), AdapterView.OnItemSelectedListener {
         return true
     }
 
-    private fun validateBirhtdate(password: String): Boolean {
+    private fun validateBirthdate(password: String): Boolean {
         if (password.isEmpty()) {
             binding.edtBirthdate.error = "Date of birth cannot be empty"
             binding.edtBirthdate.setBackgroundResource(R.drawable.custom_error_edit_text)
