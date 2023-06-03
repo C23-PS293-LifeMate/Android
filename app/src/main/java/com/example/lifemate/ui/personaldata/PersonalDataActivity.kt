@@ -18,6 +18,7 @@ import com.example.lifemate.ui.ViewModelFactory
 import com.example.lifemate.ui.authentication.AuthViewModel
 import com.example.lifemate.ui.authentication.UserViewModel
 import com.example.lifemate.ui.customview.CustomDialogFragment
+import com.example.lifemate.ui.profile.ProfileViewModel
 import com.example.lifemate.utils.Helper
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
@@ -29,7 +30,7 @@ class PersonalDataActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
     private val binding get() = _binding!!
     private var genderText: String = ""
 
-    private val authViewModel by viewModels<AuthViewModel>()
+    private val profileViewModel by viewModels<ProfileViewModel>()
     private val userViewModel by viewModels<UserViewModel> {
         ViewModelFactory.getInstance(this)
     }
@@ -84,8 +85,8 @@ class PersonalDataActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         userViewModel.getUserToken().observe(this){utoken ->
             userViewModel.getUserId().observe(this){uid ->
 
-                authViewModel.getUserById(utoken, uid.toString())
-                authViewModel.userResult.observe(this){
+                profileViewModel.getUserById(utoken, uid.toString())
+                profileViewModel.userResult.observe(this){
                     binding.edtUsername.setText(it.name)
                     binding.edtEmail.setText(it.email)
                     binding.edtBirthdate.setText(Helper.formatDate(it.birthDate.toString()))
@@ -103,8 +104,8 @@ class PersonalDataActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
                     val isValidGender = validateGender(genderText,gender)
 
                     if(isValidName&&isValidEmail&&isValidDob&&isValidGender){
-                        authViewModel.UpdateResponse(utoken, uid, name, email, dob, genderText)
-                        authViewModel.toPage.observe(this){
+                        profileViewModel.UpdateResponse(utoken, uid, name, email, dob, genderText)
+                        profileViewModel.toPage.observe(this){
                             if(it == true) finish()
                         }
                     }
@@ -114,7 +115,7 @@ class PersonalDataActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         }
 
 
-        authViewModel.isError.observe(this) {
+        profileViewModel.isError.observe(this) {
             //Nampilin error pake ini "it" parameter stringny
             val dialogFragment =
                 CustomDialogFragment.newInstance(it)
@@ -123,7 +124,7 @@ class PersonalDataActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
                 CustomDialogFragment::class.java.simpleName)
         }
 
-        authViewModel.isLoading.observe(this) {
+        profileViewModel.isLoading.observe(this) {
             showLoading(it)
         }
 

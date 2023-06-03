@@ -16,13 +16,6 @@ import retrofit2.Response
 class AuthViewModel: ViewModel() {
 
     private val _registerResult = MutableLiveData<RegisterResponse>()
-//    val registerResult: LiveData<RegisterResponse> = _registerResult
-
-    private val _updateResult = MutableLiveData<UpdateResponse>()
-//    val updateResult: LiveData<UpdateResponse> = _updateResult
-
-    private val _userResult = MutableLiveData<UserResponse>()
-    val userResult: LiveData<UserResponse> = _userResult
 
     private val _loginResult = MutableLiveData<LoginResponse>()
     val loginResult: LiveData<LoginResponse> = _loginResult
@@ -99,72 +92,6 @@ class AuthViewModel: ViewModel() {
                 _isLoading.value = false
                 _isError.value = t.message
                 Log.e(TAG, "onFailure2: ${t.message.toString()}")
-            }
-
-        })
-    }
-
-    fun UpdateResponse(token: String, id: Int, name: String, email: String, birthDate: String, gender: String){
-        _isLoading.value = true
-        val client = ApiConfig.getApiService().UpdateUser(token, id, name, email, birthDate, gender)
-
-        client.enqueue(object : Callback<UpdateResponse>{
-            override fun onResponse(
-                call: Call<UpdateResponse>,
-                response: Response<UpdateResponse>
-            ) {
-                if(response.isSuccessful){
-                    _isLoading.value = false
-                    val responseBody = response.body()
-                    if(responseBody != null && responseBody.message == "User data updated successfully"){
-                        _toPage.value = true
-                        _isError.value = "Data update successful"
-                        _updateResult.postValue(response.body())
-                    }else{
-                        _toPage.value = false
-                        _isError.value = response.body()?.message ?: "Email is already taken"
-                    }
-                }else{
-                    _toPage.value = false
-                    _isLoading.value = false
-                    _isError.value = response.body()?.message ?: "Error"
-                    Log.e(TAG, "onFailure1: ${response.message()}")
-                }
-            }
-
-            override fun onFailure(call: Call<UpdateResponse>, t: Throwable) {
-                _toPage.value = false
-                _isLoading.value = false
-                _isError.value = t.message
-                Log.e(TAG, "onFailure2: ${t.message.toString()}")
-            }
-
-        })
-    }
-
-    fun getUserById(token: String, id: String){
-        _isLoading.value = true
-        val client = ApiConfig.getApiService().getUserById(token, id)
-
-        client.enqueue(object : Callback<UserResponse>{
-            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
-                if(response.isSuccessful){
-                    _isLoading.value = false
-                    val responseBody = response.body()
-                    if(responseBody != null && responseBody.idUser == id.toInt()){
-                        _userResult.postValue(response.body())
-                    }
-                }else{
-                    _isLoading.value = false
-                    _isError.value = "Failed to load data"
-                    Log.e(TAG, "onFailure1: Failed to load data")
-                }
-            }
-
-            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                _isLoading.value = false
-                _isError.value = t.message
-                Log.e(TAG, "onFailure1: ${t.message.toString()}")
             }
 
         })
