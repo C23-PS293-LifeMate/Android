@@ -21,7 +21,8 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="40dp"
-        android:src="@drawable/about_lifemate"
+        android:scaleType="centerCrop"
+        android:src="@drawable/heart_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/circleImageView"
-        android:text="Username" />
+        tools:text="Username" />
     <TextView
         android:id="@+id/tv_email"
         android:layout_width="0dp"
@@ -52,7 +53,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_username"
-        android:text="emaiil@gmail.com" />
+        tools:text="emaiil@gmail.com" />
 
     <TextView
         android:id="@+id/textView3"
@@ -60,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="8dp"
-        android:text="Account"
+        android:text="@string/account"
         android:textColor="@color/dark_green"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -87,7 +88,7 @@
             android:drawablePadding="8dp"
             android:gravity="center_vertical"
             android:textStyle="bold"
-            android:text="Personal Data"
+            android:text="@string/personal_data"
             android:textColor="@color/light_green"
             app:drawableStartCompat="@drawable/baseline_account_circle_24"
             tools:ignore="RelativeOverlap"
@@ -141,10 +142,11 @@
         android:background="@drawable/custom_logout_button"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
-        android:text="Logout"
+        android:text="@string/logout"
         app:backgroundTint="@null"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:drawable="@drawable/baseline_logout_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_change_pass" />
@@ -157,6 +159,7 @@
         android:padding="10dp"
         android:visibility="gone"
         android:translationZ="90dp"
+        android:background="@drawable/custom_edit_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -41,7 +41,6 @@ class ChangePassViewModel: ViewModel() {
                     val responseBody = response.body()
                     if(responseBody != null && responseBody.message == "Password changed successfully"){
                         _toPage.value = true
-                        _isError.value = "Password changed successfully"
                         _changeResult.postValue(response.body())
                     }else{
                         _toPage.value = false
