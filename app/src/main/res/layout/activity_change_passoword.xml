@@ -44,21 +44,26 @@
             android:inputType="textPassword"
             android:paddingHorizontal="16dp"
             android:drawablePadding="12dp"
-            android:background="@drawable/custom_edit_text" />
+            android:background="@drawable/custom_edit_text"/>
 
-
-        <com.example.lifemate.ui.customview.PwEditText
-            android:id="@+id/edt_new_pass"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtl_pass"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:paddingHorizontal="16dp"
-            android:inputType="textPassword"
-            android:hint="@string/new_password"
-            android:drawablePadding="12dp"
-            android:background="@drawable/custom_edit_text" />
+            app:passwordToggleEnabled="false"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.example.lifemate.ui.customview.ChangePwEditText
+                android:id="@+id/edt_new_pass"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:paddingHorizontal="16dp"
+                android:inputType="textPassword"
+                android:drawablePadding="12dp"
+                android:background="@drawable/custom_edit_text" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <EditText
             android:id="@+id/edt_new_pass_again"

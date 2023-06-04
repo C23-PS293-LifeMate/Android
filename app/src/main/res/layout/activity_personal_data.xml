@@ -51,14 +51,13 @@
             android:id="@+id/edt_email"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:paddingHorizontal="16dp"
-            android:drawablePadding="12dp"
-            android:enabled="false"
             android:background="@drawable/custom_edit_text"
-            android:drawableStart="@drawable/baseline_email_24"/>
+            android:drawableStart="@drawable/baseline_email_24"
+            android:drawablePadding="12dp"
+            android:paddingHorizontal="16dp" />
 
         <EditText
             android:id="@+id/edt_birthdate"

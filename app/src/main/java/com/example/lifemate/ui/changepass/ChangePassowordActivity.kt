@@ -14,14 +14,34 @@ import com.example.lifemate.ui.customview.CustomDialogFragment
 import com.example.lifemate.utils.Helper
 
 class ChangePassowordActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityChangePassowordBinding
+    private var _binding: ActivityChangePassowordBinding? = null
+    private val binding get() = _binding!!
     private val changePasswordViewModel by viewModels<ChangePassViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityChangePassowordBinding.inflate(layoutInflater)
+        _binding = ActivityChangePassowordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.edtNewPass.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if(s.toString().isNotEmpty()){
+                    if(s.toString().length < 8){
+                        binding.edtlPass.setPasswordVisibilityToggleEnabled(false)
+                    }else{
+                        binding.edtlPass.setPasswordVisibilityToggleEnabled(true)
+                    }
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+        })
 
         binding.edtNewPassAgain.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -119,4 +139,9 @@ class ChangePassowordActivity : AppCompatActivity() {
     }
 
     private fun showLoading(isLoading: Boolean) {binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE}
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

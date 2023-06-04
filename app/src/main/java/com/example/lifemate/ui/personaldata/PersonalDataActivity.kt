@@ -112,7 +112,6 @@ class PersonalDataActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
             }
         }
 
-
         profileViewModel.isError.observe(this) {
             //Nampilin error pake ini "it" parameter stringny
             val dialogFragment =

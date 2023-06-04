@@ -71,7 +71,6 @@
                     android:layout_height="wrap_content"
                     android:paddingVertical="16dp"
                     android:drawablePadding="12dp"
-                    android:hint="@string/password"
                     android:inputType="textPassword"
                     android:background="@drawable/custom_edit_text"
                     android:drawableStart="@drawable/baseline_lock_24" />

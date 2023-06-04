@@ -27,5 +27,4 @@ class UserViewModel (private val pref: UserPreferences): ViewModel(){
     fun getUserId() : LiveData<Int> {
         return pref.getUserId().asLiveData()
     }
-
 }
