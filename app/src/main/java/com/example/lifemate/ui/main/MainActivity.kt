@@ -2,6 +2,7 @@ package com.example.lifemate.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -53,9 +54,11 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.getUserToken().observe(this){Token ->
             if (Token != "token") {
                 token = Token
+                Log.d("test2", Helper.token)
                 mainViewModel.getUserUid().observe(this){
                     if(it != -1){
                         Helper.uid = it
+                        Log.d("test2", Helper.uid.toString())
                     }else {
                         startActivity(Intent(this@MainActivity, AuthenticationActivity::class.java))
                         finish()

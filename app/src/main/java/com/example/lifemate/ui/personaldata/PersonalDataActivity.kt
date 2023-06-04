@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.AdapterView
@@ -12,14 +13,14 @@ import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import com.example.lifemate.R
 import com.example.lifemate.databinding.ActivityPersonalDataBinding
-import com.example.lifemate.ui.ViewModelFactory
-import com.example.lifemate.ui.authentication.UserViewModel
 import com.example.lifemate.ui.customview.CustomDialogFragment
 import com.example.lifemate.ui.profile.ProfileViewModel
 import com.example.lifemate.utils.Helper
 import com.example.lifemate.utils.Helper.uid
+import com.example.lifemate.utils.Helper.withDateFormat
 import java.util.*
 
 class PersonalDataActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
@@ -65,14 +66,17 @@ class PersonalDataActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
         binding.edtBirthdate.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-
             }
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                val input = s.toString();
+                binding.edtAge.setText(Helper.getAge(input).toString())
                 if(s.isNotEmpty()){
                     binding.edtUsername.setBackgroundResource(R.drawable.custom_edit_text)
                 }
             }
             override fun afterTextChanged(s: Editable) {
+                val input = s.toString();
+                binding.edtAge.setText(Helper.getAge(input).toString())
                 if(s.isNotEmpty()){
                     binding.edtUsername.setBackgroundResource(R.drawable.custom_edit_text)
                 }
@@ -84,8 +88,10 @@ class PersonalDataActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         profileViewModel.userResult.observe(this){
             binding.edtUsername.setText(it.name)
             binding.edtEmail.setText(it.email)
-            binding.edtBirthdate.setText(Helper.formatDate(it.birthDate.toString()))
+            binding.edtBirthdate.setText(it.birthDate.withDateFormat())
             binding.genderSpinner.setSelection(if(it.gender == "laki-laki") 1 else 2)
+            binding.edtAge.setText(Helper.getAge(it.birthDate).toString())
+
         }
 
         binding.btnSave.setOnClickListener{

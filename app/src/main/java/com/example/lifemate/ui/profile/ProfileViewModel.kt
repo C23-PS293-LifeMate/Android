@@ -19,9 +19,6 @@ class ProfileViewModel : ViewModel() {
     private val _userResult = MutableLiveData<UserResponse>()
     val userResult: LiveData<UserResponse> = _userResult
 
-    private val _loginResult = MutableLiveData<LoginResponse>()
-    val loginResult: LiveData<LoginResponse> = _loginResult
-
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
@@ -30,11 +27,6 @@ class ProfileViewModel : ViewModel() {
 
     private val _toPage = MutableLiveData<Boolean>()
     val toPage: LiveData<Boolean> = _toPage
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
-    }
-    val text: LiveData<String> = _text
 
     fun UpdateResponse(token: String, id: Int, name: String, email: String, birthDate: String, gender: String){
         _isLoading.value = true

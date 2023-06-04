@@ -101,6 +101,39 @@
             app:tint="@color/light_green" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/btn_change_pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/custom_edit_text"
+        android:gravity="center_vertical"
+        android:layout_marginTop="8dp"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_personal_data">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            android:text="@string/change_password"
+            android:textColor="@color/light_green"
+            app:drawableStartCompat="@drawable/baseline_lock_24"
+            tools:ignore="RelativeOverlap"
+            tools:targetApi="m" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/baseline_keyboard_arrow_right_24"
+            app:tint="@color/light_green" />
+    </RelativeLayout>
+
     <Button
         android:id="@+id/btn_logout"
         android:layout_width="0dp"
@@ -114,7 +147,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_personal_data" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_change_pass" />
 
     <ProgressBar
         android:id="@+id/progressBar"

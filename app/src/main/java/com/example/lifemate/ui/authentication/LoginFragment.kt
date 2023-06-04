@@ -56,12 +56,14 @@ class LoginFragment : Fragment() {
 
         userViewModel.getUserId().observe(viewLifecycleOwner){
             Helper.uid = it
+            Log.d("test", Helper.uid.toString())
         }
 
         userViewModel.getUserToken().observe(viewLifecycleOwner) { token ->
             if (token != "token") {
 
                 Helper.token = token
+                Log.d("test", Helper.token)
                 Intent(requireActivity(), MainActivity::class.java).also {
                     it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(it)
