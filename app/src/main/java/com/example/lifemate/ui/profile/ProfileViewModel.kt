@@ -42,7 +42,6 @@ class ProfileViewModel : ViewModel() {
                     val responseBody = response.body()
                     if(responseBody != null && responseBody.message == "User data updated successfully"){
                         _toPage.value = true
-                        _isError.value = "Data update successful"
                         _updateResult.postValue(response.body())
                     }else{
                         _toPage.value = false

@@ -38,6 +38,7 @@ class PersonalDataActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         super.onCreate(savedInstanceState)
         _binding = ActivityPersonalDataBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         val gender = resources.getStringArray(R.array.gender)
         val arrayAdapter = ArrayAdapter(this,R.layout.dropdown_item, gender)

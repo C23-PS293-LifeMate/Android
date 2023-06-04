@@ -40,4 +40,16 @@
     <string name="new_password">New password</string>
     <string name="re_type_new_password">Re-type new password</string>
     <string name="password">Password</string>
+    <string name="input_reward_text">How many times you can give self-reward every week?</string>
+    <string name="ok">OK</string>
+    <string name="info">Info</string>
+    <string name="hint_input_help">> A reflection of your altruism or selflessness (see the TED video from Matthieu Ricard \'How to let altruism be your guide\')\n> e.g.: caring for your family, actively supporting a friend, mentoring, coaching, developing or promoting a co-worker\n> Over a period of 12 months.</string>
+    <string name="hint_input_todo">> Include your weekly goals, work- and personal-related tasks\n> On a scale of 0 = not at all to 10 = very well</string>
+    <string name="hint_input_passion">> Daily hours spent doing what you are passionate and dreaming about, and/or contributing to a greater cause: health, education, peace, society development</string>
+    <string name="hint_input_reward">> Include meditation, praying and relaxation activities such as fitness, walking in a park or lunch breaks.</string>
+    <string name="account">Account</string>
+    <string name="logout">Logout</string>
+    <string name="day">Monday</string>
+    <string name="date">29 May 2023</string>
+    <string name="no_history_yet">No history yet</string>
 </resources>

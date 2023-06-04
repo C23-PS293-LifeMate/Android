@@ -23,13 +23,14 @@
         android:id="@+id/tv_day"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Monday"
         android:layout_marginStart="8dp"
+        android:text="@string/day"
         android:textColor="@color/white"
         android:textSize="16sp"
+        android:layout_marginEnd="8dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tv_date"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_delete"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5" />
@@ -38,15 +39,26 @@
         android:id="@+id/tv_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="29 May 2023"
-        android:textColor="@color/white"
         android:layout_marginStart="8dp"
+        android:text="@string/date"
+        android:textColor="@color/white"
         android:textSize="12sp"
         android:textStyle="bold"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_delete"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/tv_day"
         app:layout_constraintVertical_bias="0.5" />
+
+    <ImageView
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_delete_forever_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/light_red" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

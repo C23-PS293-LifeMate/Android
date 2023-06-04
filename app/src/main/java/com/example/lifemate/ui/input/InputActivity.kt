@@ -24,6 +24,8 @@ class InputActivity : AppCompatActivity() {
         _binding = ActivityInputBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         setupAction()
     }
 
@@ -65,6 +67,38 @@ class InputActivity : AppCompatActivity() {
             }
 
         })
+
+        binding.btnHintHelp.setOnClickListener {
+            val dialogFragment =
+                CustomDialogFragment.newInstance(resources.getString(R.string.hint_input_help))
+            dialogFragment.show(
+                supportFragmentManager,
+                CustomDialogFragment::class.java.simpleName)
+        }
+
+        binding.btnHintPassion.setOnClickListener {
+            val dialogFragment =
+                CustomDialogFragment.newInstance(resources.getString(R.string.hint_input_passion))
+            dialogFragment.show(
+                supportFragmentManager,
+                CustomDialogFragment::class.java.simpleName)
+        }
+
+        binding.btnHintTodo.setOnClickListener {
+            val dialogFragment =
+                CustomDialogFragment.newInstance(resources.getString(R.string.hint_input_todo))
+            dialogFragment.show(
+                supportFragmentManager,
+                CustomDialogFragment::class.java.simpleName)
+        }
+
+        binding.btnHintReward.setOnClickListener {
+            val dialogFragment =
+                CustomDialogFragment.newInstance(resources.getString(R.string.hint_input_reward))
+            dialogFragment.show(
+                supportFragmentManager,
+                CustomDialogFragment::class.java.simpleName)
+        }
 
         binding.btnCheck.setOnClickListener {
             val height = binding.edtHeight.text.toString()
