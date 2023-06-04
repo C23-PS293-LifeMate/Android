@@ -47,4 +47,17 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("id") id: String
     ): Call<UserResponse>
+
+    @FormUrlEncoded
+    @POST("insertrecord")
+    fun insertRecord(
+        @Header("Authorization") token: String,
+        @Field("idUser") idUser: Int,
+        @Field("height") height: String,
+        @Field("weight") weight: String,
+        @Field("weeklyToDoList") weeklyToDoList: String,
+        @Field("userHelp") userHelp: String,
+        @Field("passionate") passionate: String,
+        @Field("selfReward") selfReward: String
+    ): Call<InsertRecord>
 }

@@ -10,7 +10,7 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import com.example.lifemate.R
 
-class PwEditText : AppCompatEditText {
+class ChangePwEditText: AppCompatEditText {
 
     constructor(context: Context) : super(context) {
         init()
@@ -47,7 +47,7 @@ class PwEditText : AppCompatEditText {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        hint = "Password"
+        hint = "New Password"
         textAlignment = View.TEXT_ALIGNMENT_VIEW_START
         maxLines = 1
     }
