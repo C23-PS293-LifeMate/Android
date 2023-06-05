@@ -6,9 +6,12 @@ data class InsertRecord(
     @field:SerializedName("message")
     val message: String,
 
+    @field:SerializedName("recordDate")
+    val recordDate: String,
+
     @field:SerializedName("obesity")
     val obesity: Int,
 
     @field:SerializedName("stress")
-    val stress: Int
+    val stress: Float
 )

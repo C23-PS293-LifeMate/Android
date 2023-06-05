@@ -7,6 +7,7 @@ import android.widget.EditText
 import androidx.annotation.RequiresApi
 import java.text.DateFormat
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -69,6 +70,21 @@ object Helper {
         val newFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         return newFormatter.format(parsedDate)
     }
+
+    fun String.withHistoryDateFormat(): String {
+        val originalFormatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+        val parsedDate: Date = originalFormatter.parse(this) as Date
+
+        val newFormatter = SimpleDateFormat("dd", Locale.getDefault())
+        return newFormatter.format(parsedDate)
+    }
+
+    /*@RequiresApi(Build.VERSION_CODES.O)
+    fun String.withHistoryDateFormat(): String {
+        val firstApiFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+        val date = LocalDate.parse(this , firstApiFormat)
+        return date.dayOfWeek.toString()
+    }*/
 
 //    @RequiresApi(Build.VERSION_CODES.O)
 //    fun formatDate(date: String): String{

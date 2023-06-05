@@ -48,6 +48,14 @@ interface ApiService {
         @Path("id") id: String
     ): Call<UserResponse>
 
+    @GET("getRecordById/{id}")
+    suspend fun getRecordById(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int,
+        @Query("page") page: Int,
+        @Query("size") size: Int
+    ): RecordResponse
+
     @FormUrlEncoded
     @POST("insertrecord")
     fun insertRecord(

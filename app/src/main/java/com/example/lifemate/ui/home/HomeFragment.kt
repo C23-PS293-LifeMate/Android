@@ -25,7 +25,7 @@ class HomeFragment : Fragment() {
 //    private val userViewModel by viewModels<UserViewModel> {
 //        ViewModelFactory.getInstance(requireActivity())
 //    }
-    private val profileViewModel by viewModels<ProfileViewModel>()
+    private val homeViewModel by viewModels<HomeViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,8 +40,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        profileViewModel.getUserById(Helper.token, Helper.uid.toString())
-        profileViewModel.userResult.observe(viewLifecycleOwner){
+        homeViewModel.getUserById(Helper.token, Helper.uid.toString())
+        homeViewModel.userResult.observe(viewLifecycleOwner){
             binding.tvGreet.text = resources.getString(R.string.greeting, it.name)
         }
 
@@ -51,7 +51,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        profileViewModel.isError.observe(viewLifecycleOwner){
+        homeViewModel.isError.observe(viewLifecycleOwner){
             val dialogFragment =
                 CustomDialogFragment.newInstance(it)
             dialogFragment.show(
@@ -59,7 +59,7 @@ class HomeFragment : Fragment() {
                 CustomDialogFragment::class.java.simpleName)
         }
 
-        profileViewModel.isLoading.observe(viewLifecycleOwner){
+        homeViewModel.isLoading.observe(viewLifecycleOwner){
             showLoading(it)
         }
     }
