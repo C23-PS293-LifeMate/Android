@@ -28,43 +28,6 @@ class ProfileViewModel : ViewModel() {
     private val _toPage = MutableLiveData<Boolean>()
     val toPage: LiveData<Boolean> = _toPage
 
-    /*fun UpdateResponse(token: String, id: Int, name: String, email: String, birthDate: String, gender: String){
-        _isLoading.value = true
-        val client = ApiConfig.getApiService().UpdateUser(token, id, name, email, birthDate, gender)
-
-        client.enqueue(object : Callback<UpdateResponse> {
-            override fun onResponse(
-                call: Call<UpdateResponse>,
-                response: Response<UpdateResponse>
-            ) {
-                if(response.isSuccessful){
-                    _isLoading.value = false
-                    val responseBody = response.body()
-                    if(responseBody != null && responseBody.message == "User data updated successfully"){
-                        _toPage.value = true
-                        _updateResult.postValue(response.body())
-                    }else{
-                        _toPage.value = false
-                        _isError.value = response.body()?.message ?: "Email is already taken"
-                    }
-                }else{
-                    _toPage.value = false
-                    _isLoading.value = false
-                    _isError.value = response.body()?.message ?: "Error"
-                    Log.e(TAG, "onFailure1: ${response.message()}")
-                }
-            }
-
-            override fun onFailure(call: Call<UpdateResponse>, t: Throwable) {
-                _toPage.value = false
-                _isLoading.value = false
-                _isError.value = t.message
-                Log.e(TAG, "onFailure2: ${t.message.toString()}")
-            }
-
-        })
-    }*/
-
     fun getUserById(token: String, id: String){
         _isLoading.value = true
         val client = ApiConfig.getApiService().getUserById(token, id)
@@ -86,7 +49,7 @@ class ProfileViewModel : ViewModel() {
 
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                 _isLoading.value = false
-                _isError.value = t.message
+                _isError.value = "conncetion failed"
                 Log.e(TAG, "onFailure1: ${t.message.toString()}")
             }
 

@@ -35,7 +35,7 @@ data class RecordItem(
     @field:SerializedName("obesity")
     val obesity : Int,
 
-    @field:SerializedName("Stress")
+    @field:SerializedName("stress")
     val stress: Float,
 
     @field:SerializedName("recordid")

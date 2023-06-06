@@ -84,7 +84,7 @@ class PersonalDataViewModel: ViewModel() {
 
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                 _isLoading.value = false
-                _isError.value = t.message
+                _isError.postValue("conncetion failed")
                 Log.e(TAG, "onFailure1: ${t.message.toString()}")
             }
 

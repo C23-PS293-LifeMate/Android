@@ -4,21 +4,27 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.DialogFragment
 import com.example.lifemate.R
+import com.example.lifemate.databinding.FragmentConnectionFailedDialogBinding
 import com.example.lifemate.databinding.FragmentCustomDialogBinding
 
-class CustomDialogFragment : DialogFragment() {
-
-    private var _binding: FragmentCustomDialogBinding? = null
+class ConnectionFailedDialogFragment :  DialogFragment()  {
+    private var _binding: FragmentConnectionFailedDialogBinding? = null
     private val binding get() = _binding!!
+    private var refreshListener: RefreshListener? = null
+
+    interface RefreshListener {
+        fun onRefresh()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentCustomDialogBinding.inflate(inflater,container,false)
+        _binding = FragmentConnectionFailedDialogBinding.inflate(inflater,container,false)
         return binding.root
     }
 
@@ -36,24 +42,18 @@ class CustomDialogFragment : DialogFragment() {
             setGravity(Gravity.CENTER)
             setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
-        val parameter = arguments?.getString(param)
         binding.apply {
-            tvDesc.text = parameter
             btnOk.setOnClickListener {
+                refreshListener?.onRefresh()
                 dialog?.dismiss()
             }
         }
     }
 
-    companion object {
-        private const val param = "PARAM"
-        fun newInstance(parameter: String): CustomDialogFragment {
-            val fragment = CustomDialogFragment()
-            val args = Bundle()
-            args.putString(param, parameter)
-            fragment.arguments = args
-            return fragment
-        }
+
+
+    fun setRefreshListener(listener: RefreshListener) {
+        refreshListener = listener
     }
 
     override fun onDestroyView() {

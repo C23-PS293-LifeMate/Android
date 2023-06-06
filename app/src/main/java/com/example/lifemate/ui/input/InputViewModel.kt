@@ -15,11 +15,12 @@ import retrofit2.Response
 
 class InputViewModel: ViewModel() {
 
-    private val _insertData = MutableLiveData<InsertRecord>()
-    val insertData: LiveData<InsertRecord> = _insertData
+    private val _insertResponse = MutableLiveData<InsertRecord>()
+    val insertResponse: LiveData<InsertRecord> = _insertResponse
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
+
 
     private val _isError = MutableLiveData<String>()
     val isError: LiveData<String> = _isError
@@ -27,7 +28,7 @@ class InputViewModel: ViewModel() {
     private val _toPage = MutableLiveData<Boolean>()
     val toPage: LiveData<Boolean> = _toPage
 
-    fun InsertData(token: String, uid: Int, height: String, weight: String, toDoList: String, userHelp: String, passionate: String, selfReward: String){
+    fun insertData(token: String, uid: Int, height: String, weight: String, toDoList: String, userHelp: String, passionate: String, selfReward: String){
         _isLoading.value = true
         val client = ApiConfig.getApiService().insertRecord(token, uid, height, weight, toDoList, userHelp, passionate, selfReward)
 
@@ -38,7 +39,7 @@ class InputViewModel: ViewModel() {
                     val responseBody = response.body()
                     if(responseBody != null && responseBody.message == "Record inserted"){
                         _toPage.value = true
-                        _insertData.postValue(response.body())
+                        _insertResponse.postValue(response.body())
                     }
                     else{
                         _toPage.value = false

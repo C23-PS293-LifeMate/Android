@@ -12,6 +12,7 @@
         android:layout_height="175dp"
         android:src="@drawable/logo_lifemate"
         android:layout_marginTop="16dp"
+        android:transitionName="logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,6 +24,7 @@
         android:layout_marginHorizontal="16dp"
         android:text="Login"
         android:textSize="20sp"
+        android:transitionName="title"
         android:textColor="@color/dark_green"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,9 +33,11 @@
 
 
         <LinearLayout
+            android:id="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:transitionName="layout"
             android:background="@drawable/custom_shadow_background"
             android:elevation="10dp"
             android:layout_marginTop="8dp"
