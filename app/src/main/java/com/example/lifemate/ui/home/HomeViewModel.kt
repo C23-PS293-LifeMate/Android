@@ -25,27 +25,27 @@ class HomeViewModel : ViewModel() {
     val toPage: LiveData<Boolean> = _toPage
 
     fun getUserById(token: String, id: String){
-        _isLoading.postValue(true) //= true
+        _isLoading.postValue(true)
         val client = ApiConfig.getApiService().getUserById(token, id)
 
         client.enqueue(object : Callback<UserResponse> {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if(response.isSuccessful){
-                    _isLoading.postValue(false)// = false
+                    _isLoading.postValue(false)
                     val responseBody = response.body()
                     if(responseBody != null && responseBody.idUser == id.toInt()){
                         _userResult.postValue(response.body())
                     }
                 }else{
-                    _isLoading.postValue(false)// = false
-                    _isError.postValue("Failed to load data") //= "Failed to load data"
+                    _isLoading.postValue(false)
+                    _isError.postValue("Failed to load data")
                     Log.e(TAG, "onFailure1: Failed to load data")
                 }
             }
 
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                _isLoading.postValue(false)// = false
-                _isError.postValue("conncetion failed") //= t.message
+                _isLoading.postValue(false)
+                _isError.postValue("conncetion failed")
                 Log.e(TAG, "onFailure2: ${t.message.toString()}")
             }
 

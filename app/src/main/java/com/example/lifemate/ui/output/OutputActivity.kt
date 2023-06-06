@@ -2,7 +2,6 @@ package com.example.lifemate.ui.output
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.lifemate.R
 import com.example.lifemate.databinding.ActivityOutputBinding
 import com.example.lifemate.utils.Helper.withHistoryDayDateFormat
 

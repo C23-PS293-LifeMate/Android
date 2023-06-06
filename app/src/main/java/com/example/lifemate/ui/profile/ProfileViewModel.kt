@@ -4,8 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.lifemate.data.response.LoginResponse
-import com.example.lifemate.data.response.UpdateResponse
 import com.example.lifemate.data.response.UserResponse
 import com.example.lifemate.data.retrofit.ApiConfig
 import retrofit2.Call
@@ -13,9 +11,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class ProfileViewModel : ViewModel() {
-
-//    private val _updateResult = MutableLiveData<UpdateResponse>()
-
     private val _userResult = MutableLiveData<UserResponse>()
     val userResult: LiveData<UserResponse> = _userResult
 
@@ -29,27 +24,27 @@ class ProfileViewModel : ViewModel() {
     val toPage: LiveData<Boolean> = _toPage
 
     fun getUserById(token: String, id: String){
-        _isLoading.value = true
+        _isLoading.postValue(true)
         val client = ApiConfig.getApiService().getUserById(token, id)
 
         client.enqueue(object : Callback<UserResponse> {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if(response.isSuccessful){
-                    _isLoading.value = false
+                    _isLoading.postValue(false)
                     val responseBody = response.body()
                     if(responseBody != null && responseBody.idUser == id.toInt()){
                         _userResult.postValue(response.body())
                     }
                 }else{
-                    _isLoading.value = false
-                    _isError.value = "Failed to load data"
+                    _isLoading.postValue(false)
+                    _isError.postValue("Failed to load data")
                     Log.e(TAG, "onFailure1: Failed to load data")
                 }
             }
 
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                _isLoading.value = false
-                _isError.value = "conncetion failed"
+                _isLoading.postValue(false)
+                _isError.postValue("conncetion failed")
                 Log.e(TAG, "onFailure1: ${t.message.toString()}")
             }
 

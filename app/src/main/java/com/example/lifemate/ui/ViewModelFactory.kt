@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.lifemate.di.Injection
 import com.example.lifemate.ui.authentication.UserViewModel
 import com.example.lifemate.ui.main.MainViewModel
-import com.example.lifemate.ui.profile.ProfileViewModel
 import com.example.lifemate.utils.UserPreferences
 
 class ViewModelFactory private constructor(
@@ -24,9 +23,6 @@ class ViewModelFactory private constructor(
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
-        /*if (modelClass.isAssignableFrom(UserViewModel::class.java)) {
-            return UserViewModel(pref) as T
-        }*/
     }
 
 

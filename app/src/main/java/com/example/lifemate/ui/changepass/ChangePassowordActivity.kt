@@ -7,7 +7,6 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
-import androidx.core.widget.addTextChangedListener
 import com.example.lifemate.R
 import com.example.lifemate.databinding.ActivityChangePassowordBinding
 import com.example.lifemate.ui.customview.CustomDialogFragment
@@ -103,7 +102,6 @@ class ChangePassowordActivity : AppCompatActivity() {
         }
 
         changePasswordViewModel.isError.observe(this) {
-            //Nampilin error pake ini "it" parameter stringny
             if(it == "Invalid current password"){
                 binding.edtCurrentPass.error = "Invalid current password"
                 binding.edtCurrentPass.setBackgroundResource(R.drawable.custom_error_edit_text)

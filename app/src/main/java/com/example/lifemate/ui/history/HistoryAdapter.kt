@@ -1,19 +1,16 @@
 package com.example.lifemate.ui.history
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lifemate.data.response.RecordItem
 import com.example.lifemate.databinding.HistoryItemBinding
 import com.example.lifemate.ui.output.OutputActivity
 import com.example.lifemate.utils.Helper.withHistoryDateFormat
 import com.example.lifemate.utils.Helper.withHistoryDayFormat
-import kotlin.math.log
 
 class HistoryAdapter(private val listHistory: List<RecordItem>, private val listener: OnRecordDeleteListener) : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 

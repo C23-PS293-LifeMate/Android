@@ -4,7 +4,6 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.AdapterView
@@ -13,12 +12,10 @@ import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.addTextChangedListener
 import com.example.lifemate.R
 import com.example.lifemate.databinding.ActivityPersonalDataBinding
 import com.example.lifemate.ui.customview.ConnectionFailedDialogFragment
 import com.example.lifemate.ui.customview.CustomDialogFragment
-import com.example.lifemate.ui.profile.ProfileViewModel
 import com.example.lifemate.utils.Helper
 import com.example.lifemate.utils.Helper.uid
 import com.example.lifemate.utils.Helper.withDateFormat
@@ -30,9 +27,6 @@ class PersonalDataActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
     private var genderText: String = ""
 
     private val personalDataViewModel by viewModels<PersonalDataViewModel>()
-//    private val userViewModel by viewModels<UserViewModel> {
-//        ViewModelFactory.getInstance(this)
-//    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,7 +1,5 @@
 package com.example.lifemate.ui.authentication
 
-import android.app.DatePickerDialog
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,15 +11,11 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.lifemate.R
 import com.example.lifemate.databinding.FragmentRegisterBinding
 import com.example.lifemate.ui.customview.CustomDialogFragment
 import com.example.lifemate.utils.Helper
-import kotlinx.coroutines.NonDisposableHandle.parent
-import java.text.SimpleDateFormat
-import java.util.*
 
 class RegisterFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -30,15 +24,11 @@ class RegisterFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private val authViewModel by viewModels<AuthViewModel>()
     private var genderText: String = ""
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
 
         return binding.root
@@ -143,7 +133,6 @@ class RegisterFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
 
         authViewModel.isError.observe(viewLifecycleOwner) {
-            //Nampilin error pake ini "it" parameter stringny
             val dialogFragment =
                 CustomDialogFragment.newInstance(it)
             dialogFragment.show(
@@ -210,31 +199,6 @@ class RegisterFragment : Fragment(), AdapterView.OnItemSelectedListener {
         return true
     }
 
-//    private fun setDate(){
-//        var calendar = Calendar.getInstance()
-//
-//        val month = calendar.get(Calendar.MONTH)
-//        val year = calendar.get(Calendar.YEAR)
-//        val date = calendar.get(Calendar.DAY_OF_MONTH)
-//
-//        val datepicker = DatePickerDialog.OnDateSetListener{ view, year, month, dayOfMonth ->
-//            calendar.set(Calendar.YEAR, year)
-//            calendar.set(Calendar.MONTH, month)
-//            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-//            updateLable(calendar)
-//        }
-//
-//        binding.edtBirthdate.setOnClickListener{
-//            DatePickerDialog(requireActivity(), datepicker, year, month, date).show()
-//        }
-//    }
-//
-//    private fun updateLable(calendar: Calendar){
-//        val myFormat = "yyyy-MM-dd"
-//        val sdf = SimpleDateFormat(myFormat, Locale.UK)
-//        binding.edtBirthdate.setText(sdf.format(calendar.time))
-//    }
-
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
         genderText = parent?.getItemAtPosition(position).toString()
@@ -246,7 +210,6 @@ class RegisterFragment : Fragment(), AdapterView.OnItemSelectedListener {
         if (position == 1 || position == 2){
             binding.genderSpinner.setBackgroundResource(R.drawable.custom_edit_text)
         }
-        //Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {

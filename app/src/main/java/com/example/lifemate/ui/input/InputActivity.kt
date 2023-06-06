@@ -7,7 +7,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.lifemate.R
 import com.example.lifemate.databinding.ActivityInputBinding
