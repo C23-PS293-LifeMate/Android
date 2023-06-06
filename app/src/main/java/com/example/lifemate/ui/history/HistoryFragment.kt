@@ -1,6 +1,7 @@
 package com.example.lifemate.ui.history
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +12,15 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lifemate.data.response.RecordItem
 import com.example.lifemate.databinding.FragmentHistoryBinding
+import com.example.lifemate.ui.customview.ConnectionFailedDialogFragment
 import com.example.lifemate.ui.customview.CustomDialogFragment
 import com.example.lifemate.utils.Helper
 
-class HistoryFragment : Fragment() {
+class HistoryFragment : Fragment(),HistoryAdapter.OnRecordDeleteListener , ConnectionFailedDialogFragment.RefreshListener{
 
     private lateinit var binding: FragmentHistoryBinding
     private val historyViewModel: HistoryViewModel by viewModels()
+    private lateinit var adapter: HistoryAdapter
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,11 +40,24 @@ class HistoryFragment : Fragment() {
         }
 
         historyViewModel.isError.observe(requireActivity()){
-            val dialogFragment =
-                CustomDialogFragment.newInstance(it)
-            dialogFragment.show(
-                childFragmentManager,
-                CustomDialogFragment::class.java.simpleName)
+            when (it) {
+                "Data deleted" -> {
+                    historyViewModel.getRecordById(Helper.token, Helper.uid)
+                    adapter.notifyDataSetChanged()
+                }
+                "conncetion failed" -> {
+                    val dialogFragment = ConnectionFailedDialogFragment()
+                    dialogFragment.setRefreshListener(this)
+                    dialogFragment.show(childFragmentManager, "ConnectionFailedDialogFragment")
+                }
+                else -> {
+                    val dialogFragment = CustomDialogFragment.newInstance(it)
+                    dialogFragment.show(
+                        childFragmentManager,
+                        CustomDialogFragment::class.java.simpleName
+                    )
+                }
+            }
         }
 
         historyViewModel.getRecordById(Helper.token, Helper.uid)
@@ -49,12 +65,17 @@ class HistoryFragment : Fragment() {
             val layoutManager = LinearLayoutManager(requireActivity())
             binding.rvHistory.layoutManager = layoutManager
             binding.rvHistory.addItemDecoration(DividerItemDecoration(requireActivity(), layoutManager.orientation))
-            setHistoryData(it)
+            if(!it.isNullOrEmpty()){
+                setHistoryData(it)
+            }else{
+                binding.tvEmpty.visibility = View.VISIBLE
+            }
+
         }
     }
 
     private fun setHistoryData(historyList: List<RecordItem>){
-        val adapter = HistoryAdapter(historyList)
+        adapter = HistoryAdapter(historyList, this)
         binding.rvHistory.adapter = adapter
     }
 
@@ -63,5 +84,13 @@ class HistoryFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         (activity as AppCompatActivity).supportActionBar?.hide()
+    }
+
+    override fun onRecordDelete(recordId: Int) {
+        historyViewModel.deleteRecordById(Helper.token,recordId)
+    }
+
+    override fun onRefresh() {
+        historyViewModel.getRecordById(Helper.token, Helper.uid)
     }
 }

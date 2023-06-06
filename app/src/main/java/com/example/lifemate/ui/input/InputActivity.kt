@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -100,6 +101,7 @@ class InputActivity : AppCompatActivity() {
                 CustomDialogFragment::class.java.simpleName)
         }
 
+
         binding.btnCheck.setOnClickListener {
             val height = binding.edtHeight.text.toString()
             val weight = binding.edtWeight.text.toString()
@@ -112,14 +114,22 @@ class InputActivity : AppCompatActivity() {
             val isValidWeight = validateWeight(weight.toString())
 
             if(isValidHeight && isValidWeight){
-                inputViewModel.InsertData(Helper.token, Helper.uid, height, weight, todoList, userHelp, passionate, selfReward)
-                inputViewModel.toPage.observe(this){
-                    if(it == true){
-                        Intent(this, OutputActivity::class.java).also {
-                            startActivity(it)
+                inputViewModel.insertData(Helper.token, Helper.uid, height, weight, todoList, userHelp, passionate, selfReward)
+                inputViewModel.insertResponse.observe(this){
+                    Log.d("test2", "${it.obesity},${it.stress}" )
+                    inputViewModel.toPage.observe(this){ toPage ->
+                        if(toPage == true){
+                            val intentOutput = Intent(this, OutputActivity::class.java)
+                            intentOutput.putExtra(OutputActivity.EXTRA_KEY_BMI, it.obesity)
+                            intentOutput.putExtra(OutputActivity.EXTRA_KEY_STRESS, it.stress)
+                            intentOutput.putExtra(OutputActivity.EXTRA_KEY_DATE, it.recordDate)
+                            startActivity(intentOutput)
                             finish()
+
+
                         }
-                    }
+                }
+
                 }
             }
 

@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.example.lifemate.R
 import com.example.lifemate.databinding.ActivityPersonalDataBinding
+import com.example.lifemate.ui.customview.ConnectionFailedDialogFragment
 import com.example.lifemate.ui.customview.CustomDialogFragment
 import com.example.lifemate.ui.profile.ProfileViewModel
 import com.example.lifemate.utils.Helper
@@ -23,7 +24,7 @@ import com.example.lifemate.utils.Helper.uid
 import com.example.lifemate.utils.Helper.withDateFormat
 import java.util.*
 
-class PersonalDataActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+class PersonalDataActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener , ConnectionFailedDialogFragment.RefreshListener{
     private var _binding: ActivityPersonalDataBinding? = null
     private val binding get() = _binding!!
     private var genderText: String = ""
@@ -114,12 +115,17 @@ class PersonalDataActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         }
 
         personalDataViewModel.isError.observe(this) {
-            //Nampilin error pake ini "it" parameter stringny
-            val dialogFragment =
-                CustomDialogFragment.newInstance(it)
-            dialogFragment.show(
-                supportFragmentManager,
-                CustomDialogFragment::class.java.simpleName)
+            if(it == "conncetion failed"){
+                val dialogFragment = ConnectionFailedDialogFragment()
+                dialogFragment.setRefreshListener(this)
+                dialogFragment.show(supportFragmentManager, "ConnectionFailedDialogFragment")
+            }else{
+                val dialogFragment =
+                    CustomDialogFragment.newInstance(it)
+                dialogFragment.show(
+                    supportFragmentManager,
+                    CustomDialogFragment::class.java.simpleName)
+            }
         }
 
         personalDataViewModel.isLoading.observe(this) {
@@ -190,5 +196,9 @@ class PersonalDataActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onRefresh() {
+        personalDataViewModel.getUserById(Helper.token, uid.toString())
     }
 }

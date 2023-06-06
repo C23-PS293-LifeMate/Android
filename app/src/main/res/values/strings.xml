@@ -52,4 +52,6 @@
     <string name="day">Monday</string>
     <string name="date">29 May 2023</string>
     <string name="no_history_yet">No history yet</string>
+    <string name="connection_failed">Connection failed please check your internet and try again</string>
+    <string name="try_again">Try again</string>
 </resources>

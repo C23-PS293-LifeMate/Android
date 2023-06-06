@@ -49,6 +49,9 @@ class RegisterFragment : Fragment(), AdapterView.OnItemSelectedListener {
         binding.tvLogin.setOnClickListener{
             parentFragmentManager.beginTransaction().apply {
                 replace(R.id.container, LoginFragment(), LoginFragment::class.java.simpleName)
+                addSharedElement(binding.logoLifemate,"logo")
+                addSharedElement(binding.textView,"tittle")
+                addSharedElement(binding.layout,"layout")
                 commit()
             }
         }

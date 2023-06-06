@@ -12,12 +12,13 @@ import com.example.lifemate.R
 import com.example.lifemate.databinding.FragmentHomeBinding
 import com.example.lifemate.ui.ViewModelFactory
 import com.example.lifemate.ui.authentication.UserViewModel
+import com.example.lifemate.ui.customview.ConnectionFailedDialogFragment
 import com.example.lifemate.ui.customview.CustomDialogFragment
 import com.example.lifemate.ui.input.InputActivity
 import com.example.lifemate.ui.profile.ProfileViewModel
 import com.example.lifemate.utils.Helper
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), ConnectionFailedDialogFragment.RefreshListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -52,11 +53,18 @@ class HomeFragment : Fragment() {
         }
 
         homeViewModel.isError.observe(viewLifecycleOwner){
-            val dialogFragment =
-                CustomDialogFragment.newInstance(it)
-            dialogFragment.show(
-                childFragmentManager,
-                CustomDialogFragment::class.java.simpleName)
+            if(it == "conncetion failed"){
+                val dialogFragment = ConnectionFailedDialogFragment()
+                dialogFragment.setRefreshListener(this)
+                dialogFragment.show(childFragmentManager, "ConnectionFailedDialogFragment")
+            }else{
+                val dialogFragment =
+                    CustomDialogFragment.newInstance(it)
+                dialogFragment.show(
+                    childFragmentManager,
+                    CustomDialogFragment::class.java.simpleName)
+            }
+
         }
 
         homeViewModel.isLoading.observe(viewLifecycleOwner){
@@ -75,6 +83,10 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onRefresh() {
+        homeViewModel.getUserById(Helper.token, Helper.uid.toString())
     }
 
 }

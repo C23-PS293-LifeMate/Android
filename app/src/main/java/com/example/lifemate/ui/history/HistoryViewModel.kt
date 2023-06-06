@@ -47,7 +47,7 @@ class HistoryViewModel: ViewModel() {
 
             override fun onFailure(call: Call<RecordResponse>, t: Throwable) {
                 _isLoading.postValue(false)// = false
-                _isError.postValue(t.message) //= t.message
+                _isError.postValue("conncetion failed")
                 Log.e(TAG, "onFailure2: ${t.message.toString()}")
             }
 
@@ -80,12 +80,14 @@ class HistoryViewModel: ViewModel() {
 
             override fun onFailure(call: Call<DeleteResponse>, t: Throwable) {
                 _isLoading.postValue(false)
-                _isError.postValue(t.message)
+                _isError.postValue("conncetion failed")
                 Log.e(TAG, "On Failure2: ${t.message}")
             }
 
         })
     }
+
+
 
     companion object {
         private const val TAG = "HistoryViewModel"
