@@ -1,10 +1,9 @@
-package com.example.lifemate.ui.profile
+package com.example.lifemate.ui.personaldata
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.lifemate.data.response.LoginResponse
 import com.example.lifemate.data.response.UpdateResponse
 import com.example.lifemate.data.response.UserResponse
 import com.example.lifemate.data.retrofit.ApiConfig
@@ -12,9 +11,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ProfileViewModel : ViewModel() {
-
-//    private val _updateResult = MutableLiveData<UpdateResponse>()
+class PersonalDataViewModel: ViewModel() {
+    private val _updateResult = MutableLiveData<UpdateResponse>()
 
     private val _userResult = MutableLiveData<UserResponse>()
     val userResult: LiveData<UserResponse> = _userResult
@@ -28,7 +26,7 @@ class ProfileViewModel : ViewModel() {
     private val _toPage = MutableLiveData<Boolean>()
     val toPage: LiveData<Boolean> = _toPage
 
-    /*fun UpdateResponse(token: String, id: Int, name: String, email: String, birthDate: String, gender: String){
+    fun UpdateResponse(token: String, id: Int, name: String, email: String, birthDate: String, gender: String){
         _isLoading.value = true
         val client = ApiConfig.getApiService().UpdateUser(token, id, name, email, birthDate, gender)
 
@@ -63,7 +61,7 @@ class ProfileViewModel : ViewModel() {
             }
 
         })
-    }*/
+    }
 
     fun getUserById(token: String, id: String){
         _isLoading.value = true
@@ -94,6 +92,6 @@ class ProfileViewModel : ViewModel() {
     }
 
     companion object {
-        private const val TAG = "ProfileViewModel"
+        private const val TAG = "PersonalDataViewModel"
     }
 }

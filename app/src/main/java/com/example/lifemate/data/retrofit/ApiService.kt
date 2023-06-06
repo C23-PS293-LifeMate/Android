@@ -48,6 +48,18 @@ interface ApiService {
         @Path("id") id: String
     ): Call<UserResponse>
 
+    @GET("getRecordById/{id}")
+    fun getRecordById(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Call<RecordResponse>
+
+    @DELETE("deleterecord/{id}")
+    fun deleteRecordById(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Call<DeleteResponse>
+
     @FormUrlEncoded
     @POST("insertrecord")
     fun insertRecord(

@@ -9,15 +9,15 @@ import com.example.lifemate.databinding.FragmentCustomDialogBinding
 
 class CustomDialogFragment : DialogFragment() {
 
-    private lateinit var binding: FragmentCustomDialogBinding
-
+    private var _binding: FragmentCustomDialogBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentCustomDialogBinding.inflate(inflater,container,false)
+        _binding = FragmentCustomDialogBinding.inflate(inflater,container,false)
         return binding.root
     }
 
@@ -45,6 +45,11 @@ class CustomDialogFragment : DialogFragment() {
             fragment.arguments = args
             return fragment
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

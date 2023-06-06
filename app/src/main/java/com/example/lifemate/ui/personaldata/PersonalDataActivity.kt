@@ -28,7 +28,7 @@ class PersonalDataActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
     private val binding get() = _binding!!
     private var genderText: String = ""
 
-    private val profileViewModel by viewModels<ProfileViewModel>()
+    private val personalDataViewModel by viewModels<PersonalDataViewModel>()
 //    private val userViewModel by viewModels<UserViewModel> {
 //        ViewModelFactory.getInstance(this)
 //    }
@@ -85,8 +85,8 @@ class PersonalDataActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         })
 
 
-        profileViewModel.getUserById(Helper.token, uid.toString())
-        profileViewModel.userResult.observe(this){
+        personalDataViewModel.getUserById(Helper.token, uid.toString())
+        personalDataViewModel.userResult.observe(this){
             binding.edtUsername.setText(it.name)
             binding.edtEmail.setText(it.email)
             binding.edtBirthdate.setText(it.birthDate.withDateFormat())
@@ -106,14 +106,14 @@ class PersonalDataActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
             val isValidGender = validateGender(genderText,gender)
 
             if(isValidName&&isValidEmail&&isValidDob&&isValidGender){
-                profileViewModel.UpdateResponse(Helper.token, uid, name, email, dob, genderText)
-                profileViewModel.toPage.observe(this){
+                personalDataViewModel.UpdateResponse(Helper.token, uid, name, email, dob, genderText)
+                personalDataViewModel.toPage.observe(this){
                     if(it == true) finish()
                 }
             }
         }
 
-        profileViewModel.isError.observe(this) {
+        personalDataViewModel.isError.observe(this) {
             //Nampilin error pake ini "it" parameter stringny
             val dialogFragment =
                 CustomDialogFragment.newInstance(it)
@@ -122,7 +122,7 @@ class PersonalDataActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
                 CustomDialogFragment::class.java.simpleName)
         }
 
-        profileViewModel.isLoading.observe(this) {
+        personalDataViewModel.isLoading.observe(this) {
             showLoading(it)
         }
 

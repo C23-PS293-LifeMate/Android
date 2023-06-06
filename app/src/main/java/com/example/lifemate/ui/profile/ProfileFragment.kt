@@ -72,6 +72,8 @@ class ProfileFragment : Fragment() {
 
         binding.btnLogout.setOnClickListener{
             userViewModel.clearUserPref()
+            Helper.token = ""
+            Helper.uid = -1
         }
 
     }
