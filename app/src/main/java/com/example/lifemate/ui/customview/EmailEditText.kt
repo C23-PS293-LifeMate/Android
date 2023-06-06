@@ -50,9 +50,6 @@ class EmailEditText: AppCompatEditText {
 
             }
             override fun afterTextChanged(s: Editable) {
-                // Do nothing.
-
-
 
             }
         })

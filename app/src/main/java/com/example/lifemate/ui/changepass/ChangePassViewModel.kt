@@ -5,10 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.lifemate.data.response.ChangePasswordResponse
-import com.example.lifemate.data.response.UpdateResponse
-import com.example.lifemate.data.response.UserResponse
 import com.example.lifemate.data.retrofit.ApiConfig
-import com.example.lifemate.ui.profile.ProfileViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,7 +13,6 @@ import retrofit2.Response
 class ChangePassViewModel: ViewModel() {
 
     private val _changeResult = MutableLiveData<ChangePasswordResponse>()
-    val changeResult: LiveData<ChangePasswordResponse> = _changeResult
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading

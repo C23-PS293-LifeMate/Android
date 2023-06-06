@@ -6,8 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.lifemate.data.response.LoginResponse
 import com.example.lifemate.data.response.RegisterResponse
-import com.example.lifemate.data.response.UpdateResponse
-import com.example.lifemate.data.response.UserResponse
 import com.example.lifemate.data.retrofit.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,29 +28,28 @@ class AuthViewModel: ViewModel() {
     val toPage: LiveData<Boolean> = _toPage
 
     fun loginResponse(email: String,password: String){
-        _isLoading.value = true
+        _isLoading.postValue(true)
         val client = ApiConfig.getApiService().login(email, password)
         client.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(
                 call: Call<LoginResponse>,
                 response: Response<LoginResponse>
             ) {
-                _isLoading.value = false
+                _isLoading.postValue(false)
                 if(response.isSuccessful){
                     val responseBody = response.body()
                     if(responseBody != null && responseBody.message == "Login successful"){
                         _loginResult.postValue(response.body())
                     }
                     else{
-//                        _isError.value = "ERROR ${response.code()} : ${response.message()}"
-                        _isError.value = "Wrong password / email"
+                        _isError.postValue("Wrong password / email")
                         Log.e(TAG, "onFailure: ${response.message()}")
                     }
                 }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                _isLoading.value = false
+                _isLoading.postValue(false)
                 _isError.postValue(t.message)
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
@@ -60,7 +57,7 @@ class AuthViewModel: ViewModel() {
     }
 
     fun registerResponse(name: String, email: String, password: String, bod: String, gender: String){
-        _isLoading.value = true
+        _isLoading.postValue(true)
         val client = ApiConfig.getApiService().register(name, email, password, bod, gender)
 
         client.enqueue(object : Callback<RegisterResponse>{
@@ -69,28 +66,28 @@ class AuthViewModel: ViewModel() {
                 response: Response<RegisterResponse>
             ) {
                 if(response.isSuccessful){
-                    _isLoading.value = false
+                    _isLoading.postValue(false)
                     val responseBody = response.body()
                     if(responseBody != null && responseBody.message == "User Created"){
-                        _toPage.value = true
-                        _isError.value = "Register successful"
+                        _toPage.postValue(true)
+                        _isError.postValue("Register successful")
                         _registerResult.postValue(response.body())
                     }else{
-                        _toPage.value = false
-                        _isError.value = response.body()?.message ?: "Error"
+                        _toPage.postValue(false)
+                        _isError.postValue(response.body()?.message ?: "Error")
                     }
                 }else{
-                    _toPage.value = false
-                    _isLoading.value = false
-                    _isError.value = response.body()?.message ?: "Error"
+                    _toPage.postValue(false)
+                    _isLoading.postValue(false)
+                    _isError.postValue(response.body()?.message ?: "Error")
                     Log.e(TAG, "onFailure1: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
-                _toPage.value = false
-                _isLoading.value = false
-                _isError.value = t.message
+                _toPage.postValue(false)
+                _isLoading.postValue(false)
+                _isError.postValue(t.message)
                 Log.e(TAG, "onFailure2: ${t.message.toString()}")
             }
 

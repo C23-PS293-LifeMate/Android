@@ -39,14 +39,14 @@ class HistoryViewModel: ViewModel() {
                         _isError.postValue("Failed to load data")
                     }
                 }else{
-                    _isLoading.postValue(false)// = false
-                    _isError.postValue(response.message()) //= "Failed to load data"
+                    _isLoading.postValue(false)
+                    _isError.postValue(response.message())
                     Log.e(TAG, "onFailure1: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<RecordResponse>, t: Throwable) {
-                _isLoading.postValue(false)// = false
+                _isLoading.postValue(false)
                 _isError.postValue("conncetion failed")
                 Log.e(TAG, "onFailure2: ${t.message.toString()}")
             }
@@ -86,8 +86,6 @@ class HistoryViewModel: ViewModel() {
 
         })
     }
-
-
 
     companion object {
         private const val TAG = "HistoryViewModel"

@@ -10,22 +10,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.lifemate.R
 import com.example.lifemate.databinding.FragmentHomeBinding
-import com.example.lifemate.ui.ViewModelFactory
-import com.example.lifemate.ui.authentication.UserViewModel
 import com.example.lifemate.ui.customview.ConnectionFailedDialogFragment
 import com.example.lifemate.ui.customview.CustomDialogFragment
 import com.example.lifemate.ui.input.InputActivity
-import com.example.lifemate.ui.profile.ProfileViewModel
 import com.example.lifemate.utils.Helper
 
 class HomeFragment : Fragment(), ConnectionFailedDialogFragment.RefreshListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
-//    private val userViewModel by viewModels<UserViewModel> {
-//        ViewModelFactory.getInstance(requireActivity())
-//    }
     private val homeViewModel by viewModels<HomeViewModel>()
 
     override fun onCreateView(
@@ -76,8 +69,6 @@ class HomeFragment : Fragment(), ConnectionFailedDialogFragment.RefreshListener 
         if(isLoading){
             binding.tvGreet.text = resources.getString(R.string.greeting, "")
         }
-//        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-
     }
 
     override fun onDestroyView() {

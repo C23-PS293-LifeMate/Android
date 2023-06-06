@@ -2,14 +2,8 @@ package com.example.lifemate.utils
 
 import android.app.DatePickerDialog
 import android.content.Context
-import android.os.Build
 import android.widget.EditText
-import androidx.annotation.RequiresApi
-import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 object Helper {
@@ -94,20 +88,5 @@ object Helper {
         val newFormatter = SimpleDateFormat("EEEE", Locale.getDefault())
         return newFormatter.format(parsedDate)
     }
-
-    /*@RequiresApi(Build.VERSION_CODES.O)
-    fun String.withHistoryDateFormat(): String {
-        val firstApiFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-        val date = LocalDate.parse(this , firstApiFormat)
-        return date.dayOfWeek.toString()
-    }*/
-
-//    @RequiresApi(Build.VERSION_CODES.O)
-//    fun formatDate(date: String): String{
-//        val formatter: DateTimeFormatter =
-//            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.CANADA_FRENCH)
-//        val date: LocalDateTime = LocalDateTime.parse(date.toString(), formatter)
-//        return date.toString()
-//    }
 
 }
