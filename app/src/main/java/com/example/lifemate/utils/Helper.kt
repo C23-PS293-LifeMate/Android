@@ -75,7 +75,15 @@ object Helper {
         val originalFormatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
         val parsedDate: Date = originalFormatter.parse(this) as Date
 
-        val newFormatter = SimpleDateFormat("dd", Locale.getDefault())
+        val newFormatter = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+        return newFormatter.format(parsedDate)
+    }
+
+    fun String.withHistoryDayFormat(): String {
+        val originalFormatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+        val parsedDate: Date = originalFormatter.parse(this) as Date
+
+        val newFormatter = SimpleDateFormat("EEEE", Locale.getDefault())
         return newFormatter.format(parsedDate)
     }
 

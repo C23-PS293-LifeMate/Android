@@ -46,7 +46,7 @@ class HomeViewModel : ViewModel() {
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                 _isLoading.postValue(false)// = false
                 _isError.postValue(t.message) //= t.message
-                Log.e(TAG, "onFailure1: ${t.message.toString()}")
+                Log.e(TAG, "onFailure2: ${t.message.toString()}")
             }
 
         })

@@ -49,12 +49,16 @@ interface ApiService {
     ): Call<UserResponse>
 
     @GET("getRecordById/{id}")
-    suspend fun getRecordById(
+    fun getRecordById(
         @Header("Authorization") token: String,
-        @Path("id") id: Int,
-        @Query("page") page: Int,
-        @Query("size") size: Int
-    ): RecordResponse
+        @Path("id") id: Int
+    ): Call<RecordResponse>
+
+    @DELETE("deleterecord/{id}")
+    fun deleteRecordById(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Call<DeleteResponse>
 
     @FormUrlEncoded
     @POST("insertrecord")
