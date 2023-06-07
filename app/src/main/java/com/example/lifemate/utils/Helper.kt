@@ -58,7 +58,7 @@ object Helper {
     }
 
     fun String.withDateFormat(): String {
-        val originalFormatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+        val originalFormatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.UK)
         val parsedDate: Date = originalFormatter.parse(this) as Date
 
         val newFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
@@ -69,7 +69,7 @@ object Helper {
         val originalFormatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
         val parsedDate: Date = originalFormatter.parse(this) as Date
 
-        val newFormatter = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.getDefault())
+        val newFormatter = SimpleDateFormat("EEEE, MMMM d, yyyy HH:mm", Locale.UK)
         return newFormatter.format(parsedDate)
     }
 

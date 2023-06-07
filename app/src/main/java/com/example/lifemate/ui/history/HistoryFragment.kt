@@ -63,7 +63,6 @@ class HistoryFragment : Fragment(),HistoryAdapter.OnRecordDeleteListener , Conne
         historyViewModel.listHistory.observe(requireActivity()){
             val layoutManager = LinearLayoutManager(requireActivity())
             binding.rvHistory.layoutManager = layoutManager
-            binding.rvHistory.addItemDecoration(DividerItemDecoration(requireActivity(), layoutManager.orientation))
             if(!it.isNullOrEmpty()){
                 setHistoryData(it)
             }else{

@@ -6,15 +6,21 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lifemate.R
 import com.example.lifemate.data.response.RecordItem
 import com.example.lifemate.databinding.HistoryItemBinding
 import com.example.lifemate.ui.output.OutputActivity
 import com.example.lifemate.utils.Helper.withHistoryDateFormat
+import com.example.lifemate.utils.Helper.withHistoryDayDateFormat
 import com.example.lifemate.utils.Helper.withHistoryDayFormat
 
-class HistoryAdapter(private val listHistory: List<RecordItem>, private val listener: OnRecordDeleteListener) : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
+class HistoryAdapter(
+    private val listHistory: List<RecordItem>,
+    private val listener: OnRecordDeleteListener
+) : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
-    inner class ViewHolder(private val binding: HistoryItemBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: HistoryItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         val day: TextView = binding.tvDay
         val date: TextView = binding.tvDate
         val btnDlt: ImageView = binding.btnDelete
@@ -27,10 +33,10 @@ class HistoryAdapter(private val listHistory: List<RecordItem>, private val list
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val history = listHistory[position]
-        holder.day.text = history.recordDate.withHistoryDayFormat()
-        holder.date.text = history.recordDate.withHistoryDateFormat()
+        holder.day.text = holder.itemView.context.getString(R.string.history_text, history.obesity.toString(), history.stress.toString());
+        holder.date.text = history.recordDate.withHistoryDayDateFormat()
 
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             val intentDetail = Intent(holder.itemView.context, OutputActivity::class.java)
             intentDetail.putExtra(OutputActivity.EXTRA_KEY_BMI, history.obesity)
             intentDetail.putExtra(OutputActivity.EXTRA_KEY_STRESS, history.stress)
@@ -39,10 +45,10 @@ class HistoryAdapter(private val listHistory: List<RecordItem>, private val list
         }
 
         holder.btnDlt.setOnClickListener {
-            if (position != RecyclerView.NO_POSITION) {
-                val recordId = listHistory[position].id
-                listener.onRecordDelete(recordId)
-            }
+
+            val recordId = listHistory[position].id
+            listener.onRecordDelete(recordId)
+
         }
     }
 

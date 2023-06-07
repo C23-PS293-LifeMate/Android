@@ -54,4 +54,6 @@
     <string name="no_history_yet">No history yet</string>
     <string name="connection_failed">Connection failed please check your internet and try again</string>
     <string name="try_again">Try again</string>
+    <string name="history_text">BMI %1$s | STRESS %2$s</string>
+    <string name="about_lifemate">About Lifemate</string>
 </resources>
