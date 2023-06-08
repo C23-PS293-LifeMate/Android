@@ -92,19 +92,51 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:padding="8dp"
         android:background="@drawable/custom_edit_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        android:orientation="vertical">
 
         <TextView
+            android:id="@+id/bmi_tv_tittle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            tools:text="Bmi level :"
+            android:textColor="@color/dark_green"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/bmi_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:justificationMode="inter_word"
             android:textSize="16sp"
-            android:textStyle="bold"
             tools:text="adsasdasdasdasdas adasdasdsadasdsa asdadadsada sadasdasd adasdasdas asdadasdasdsa adadas asdasdas adasdas asdasd" />
+
+        <TextView
+            android:layout_marginTop="8dp"
+            android:id="@+id/stress_tv_tittle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Stress score : "
+            android:textColor="@color/dark_green"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/stress_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:justificationMode="inter_word"
+            android:textSize="16sp"
+            tools:text="adsasdasdasdasdas adasdasdsadasdsa asdadadsada sadasdasd adasdasdas asdadasdasdsa adadas asdasdas adasdas asdasd" />
+
+
 
     </LinearLayout>
 
