@@ -60,8 +60,8 @@ class HistoryFragment : Fragment(),HistoryAdapter.OnRecordDeleteListener , Conne
         }
 
         historyViewModel.getRecordById(Helper.token, Helper.uid)
-        historyViewModel.listHistory.observe(requireActivity()){
-            val layoutManager = LinearLayoutManager(requireActivity())
+        historyViewModel.listHistory.observe(viewLifecycleOwner){
+            val layoutManager = LinearLayoutManager(requireContext())
             binding.rvHistory.layoutManager = layoutManager
             if(!it.isNullOrEmpty()){
                 setHistoryData(it)
@@ -73,7 +73,8 @@ class HistoryFragment : Fragment(),HistoryAdapter.OnRecordDeleteListener , Conne
     }
 
     private fun setHistoryData(historyList: List<RecordItem>){
-        adapter = HistoryAdapter(historyList, this)
+        val sortedList = historyList.sortedByDescending { it.recordDate }
+        adapter = HistoryAdapter(sortedList, this)
         binding.rvHistory.adapter = adapter
     }
 
