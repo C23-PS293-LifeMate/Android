@@ -14,16 +14,16 @@ to users by learning about their history and preferences.
 <br/>
 
 # Background
-> Choice overload is an adverse effect of too many available choices on our decision-making ability.
+<!-- > Choice overload is an adverse effect of too many available choices on our decision-making ability.
 > 
 > We have limited cognitive resources, so having more options to consider drains our mental energy more quickly.
 > 
-> Less is not always a bad idea. Cutting down the menu could increase the revenue.
-<!-- 
-We develop Cemil because we want to tackle the problem of choice overloading when people are picking food to eat. <br/><br/>
-Cemil can help people from wasting too much of their time when choosing what they want to eat.
-On top of that, Cemil provides an opportunity to help restaurants business grow in terms of economic and tourism, by introducing and recommending them to the public.
- -->
+> Less is not always a bad idea. Cutting down the menu could increase the revenue. -->
+
+LifeMate is your ultimate health prediction app, powered by advanced machine learning technology. We understand that maintaining a healthy lifestyle can be challenging amidst busy schedules and limited access to reliable information. That's why we created LifeMate – to simplify your journey towards better health.
+
+With LifeMate, you can effortlessly track your health metrics and receive personalized predictions. Our app currently predicts BMI and stress levels, helping you understand your body mass index and manage stress effectively. But we don't stop there – we're continuously expanding our predictive capabilities to cover a range of diseases and conditions.
+
 # Features
 - Account registration and logging in
 - Check you BMI level and Stress score
@@ -34,11 +34,10 @@ On top of that, Cemil provides an opportunity to help restaurants business grow 
 # Installation
 Download and install the LifeMate APK file into your mobile device / emulator. 
 <br/>
-<br/>
 Or, you can try building the APK yourself by downloading this project into your local directory, open it in Android Studio, wait for Gradle sync-ing and Build APK from there.
 
 ## Usage
-Using the app and making a LifeMate account is free.
+Using the app and making a LifeMate account is free. The app only can be used in with internet connection.
 
 # Some Tools and Libraries Used
 
