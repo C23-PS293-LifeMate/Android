@@ -49,7 +49,7 @@ Bangkit 2023 Batch 1 Product Capstone Team: **C23-PS293**
 <br/>
 Mobile-Development Path:
 - [Agung Dwi Paradisafa (MD) A346DSX3039](https://github.com/agungdwi)
-- 
+- [Rizq Nuzul Haq (MD) A346DSX3043](https://github.com/rizqnuzulhaq)
 
 <h1 align="center">
   Thank You!
