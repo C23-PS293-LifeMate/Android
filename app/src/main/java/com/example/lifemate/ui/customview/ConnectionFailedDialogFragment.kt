@@ -47,6 +47,10 @@ class ConnectionFailedDialogFragment :  DialogFragment()  {
         }
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        dialog?.setCancelable(false)
+    }
 
 
     fun setRefreshListener(listener: RefreshListener) {

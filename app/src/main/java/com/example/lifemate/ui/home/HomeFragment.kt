@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.lifemate.R
 import com.example.lifemate.databinding.FragmentHomeBinding
+import com.example.lifemate.ui.about.AboutActivity
 import com.example.lifemate.ui.customview.ConnectionFailedDialogFragment
 import com.example.lifemate.ui.customview.CustomDialogFragment
 import com.example.lifemate.ui.input.InputActivity
@@ -58,6 +59,12 @@ class HomeFragment : Fragment(), ConnectionFailedDialogFragment.RefreshListener 
                     CustomDialogFragment::class.java.simpleName)
             }
 
+        }
+
+        binding.cdImage.setOnClickListener {
+            Intent(requireActivity(), AboutActivity::class.java).also {
+                startActivity(it)
+            }
         }
 
         homeViewModel.isLoading.observe(viewLifecycleOwner){

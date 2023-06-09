@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment"
-    android:paddingHorizontal="16dp"
     >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,6 +16,7 @@
                     android:id="@+id/imageView"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
                     android:src="@drawable/logo_lifemate"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -28,6 +28,7 @@
                     android:layout_marginTop="8dp"
                     android:text="@string/greeting"
                     android:textColor="@color/dark_green"
+                    android:layout_marginHorizontal="16dp"
                     android:textSize="28sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -41,6 +42,7 @@
                     android:layout_marginTop="24dp"
                     android:background="@drawable/custom_green_button"
                     android:enabled="true"
+                    android:layout_marginHorizontal="16dp"
                     android:text="Check My Health"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -53,20 +55,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="56dp"
-                    android:text="About Lifemate"
-                    android:textSize="16sp"
+                    android:layout_marginHorizontal="16dp"
+                    android:textColor="@color/dark_green"
+                    android:text="@string/about_lifemate"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btn_check" />
 
-                <androidx.cardview.widget.CardView
+                <LinearLayout
                     android:id="@+id/cd_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     app:cardCornerRadius="10dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="@drawable/custom_edit_text"
+                    android:elevation="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView2">
@@ -74,18 +81,22 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="168dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/about_lifemate" />
+                            android:scaleType="fitCenter"
+                            android:padding="16dp"
 
-                </androidx.cardview.widget.CardView>
+                            android:src="@drawable/about_lifemate2" />
+
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginHorizontal="16dp"
                     android:layout_marginBottom="16dp"
+                    android:textColor="@color/dark_green"
                     android:text="Quick preview how Lifemate works"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

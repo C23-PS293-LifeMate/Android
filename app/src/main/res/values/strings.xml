@@ -54,4 +54,25 @@
     <string name="no_history_yet">No history yet</string>
     <string name="connection_failed">Connection failed please check your internet and try again</string>
     <string name="try_again">Try again</string>
+    <string name="history_text">BMI %1$s | STRESS %2$s</string>
+    <string name="about_lifemate">About Lifemate</string>
+    <string name="lifemate_description">LifeMate is your ultimate health prediction app, powered by advanced machine learning technology. We understand that maintaining a healthy lifestyle can be challenging amidst busy schedules and limited access to reliable information. Thats why we created LifeMate - to simplify your journey towards better health.\n\nWith LifeMate, you can effortlessly track your health metrics and receive personalized predictions. Our app currently predicts BMI and stress levels, helping you understand your body mass index and manage stress effectively. But we don\'t stop there - we\'re continuously expanding our predictive capabilities to cover a range of diseases and conditions.\n\nOur team is dedicated to empowering you with the knowledge to prevent and manage potential health risks. LifeMate analyzes your data and provides personalized insights, enabling you to make informed decisions about your well-being. We\'re here to support you with tailored recommendations, motivational tips, and helpful guidance.\n\nJoin the LifeMate community today and take control of your health. Embrace a healthier future with our user-friendly app and unlock the full potential of your well-being. Start your journey to better health with LifeMate now.</string>
+    <string name="stress_bad_tittle">High stress level</string>
+    <string name="stress_bad">Wow, your stress level is so high :(\nBut don\'t worry, we have some tips for you to reduce your daily stress:\n1. Do a relaxation exercise, such as taking 10 very slow breaths in and out. Or try an imagery exercise: "Imagine being in your favorite vacation place, maybe the beach or in nature."\n2. Stretch your muscles. Your muscles tense up under stress. Relieve that tension by stretching.\n3. Reach out for help. We all want to be independent, but it’s okay to ask a friend or family member to simply listen to your concerns or to help you with activities, such as getting groceries, mowing the lawn, or lifting something heavy. Relieving a burden — either physical or mental — will help reduce stress.\nsource : https://www.health.harvard.edu/staying-healthy/top-ways-to-reduce-daily-stress</string>
+    <string name="stress_good_tittle">Low stress level</string>
+    <string name="stress_good">Congratulations! Your stress level is low :), please maintain your healthy lifestyle </string>
+    <string name="tittle_1">Very Underweight</string>
+    <string name="tittle_2">Underweight</string>
+    <string name="tittle_3">Healthy</string>
+    <string name="tittle_4">Overweight</string>
+    <string name="tittle_5">Obesity</string>
+    <string name="tittle_6">Very Obese</string>
+    <string name="text_1">Embrace the journey towards a healthier weight! Seek guidance from healthcare professionals who will help you develop a plan tailored to your needs. Together, you can gradually increase your weight through a balanced diet and strength-building exercises. Let\'s build a stronger, healthier you!</string>
+    <string name="text_2">You\'re on the path to reaching your optimal weight! Focus on a well-balanced diet that fuels your body with the right nutrients. With guidance from professionals, you\'ll discover the power of nourishing foods and portion control. Embrace this opportunity to nurture your body and thrive!</string>
+    <string name="text_3">Congratulations on achieving a healthy BMI! You\'re living proof that balance is key. Continue prioritizing your well-being by staying active, eating nutritious meals, and nourishing your body. Remember, a healthy lifestyle is a lifelong adventure filled with vitality and joy!</string>
+    <string name="text_4">It\'s time to embark on a transformative journey towards a healthier you! Team up with healthcare professionals who will create a personalized plan to manage your weight. Through regular physical activity, delicious and nutritious foods, and sustainable lifestyle changes, you\'ll unleash your inner strength and vitality.</string>
+    <string name="text_5">Today marks the beginning of your transformative story! Embrace the opportunity to conquer obesity with the help of dedicated professionals. Their expertise will guide you on a path of positive change. With determination, perseverance, and the right support, you\'ll rewrite your narrative and discover a healthier, happier you!</string>
+    <string name="text_6">Your journey to a healthier weight begins now! Together with healthcare professionals, you\'ll overcome obstacles and embrace a new chapter of your life. Their comprehensive support, encompassing medical, nutritional, and lifestyle interventions, will empower you to make lasting changes. You have the strength within you to create a remarkable transformation!</string>
+
+
 </resources>
