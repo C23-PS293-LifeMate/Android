@@ -32,7 +32,7 @@ With LifeMate, you can effortlessly track your health metrics and receive person
 - And more!
 
 # Installation
-Download and install the LifeMate APK file into your mobile device / emulator [here](https://drive.google.com/file/d/1qIeD4YGRn9Ri_-4QEQrt1E8US5oKLOPU/view?usp=sharing){:target="_blank" rel="noopener"}.
+Download and install the LifeMate APK file into your mobile device / emulator [here](https://drive.google.com/file/d/1qIeD4YGRn9Ri_-4QEQrt1E8US5oKLOPU/view?usp=sharing).
 <br/>
 Or, you can try building the APK yourself by downloading this project into your local directory, open it in Android Studio, wait for Gradle sync-ing and Build APK from there.
 
