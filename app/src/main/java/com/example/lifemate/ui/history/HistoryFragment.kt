@@ -1,6 +1,7 @@
 package com.example.lifemate.ui.history
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,8 +42,9 @@ class HistoryFragment : Fragment(),HistoryAdapter.OnRecordDeleteListener , Conne
         historyViewModel.isError.observe(requireActivity()){
             when (it) {
                 "Data deleted" -> {
-                    historyViewModel.getRecordById(Helper.token, Helper.uid)
+                    Log.d("test", "jalan")
                     adapter.notifyDataSetChanged()
+                    historyViewModel.getRecordById(Helper.token, Helper.uid)
                 }
                 "conncetion failed" -> {
                     val dialogFragment = ConnectionFailedDialogFragment()
@@ -64,8 +66,11 @@ class HistoryFragment : Fragment(),HistoryAdapter.OnRecordDeleteListener , Conne
             val layoutManager = LinearLayoutManager(requireContext())
             binding.rvHistory.layoutManager = layoutManager
             if(!it.isNullOrEmpty()){
+                binding.rvHistory.visibility = View.VISIBLE
                 setHistoryData(it)
+
             }else{
+                binding.rvHistory.visibility = View.GONE
                 binding.tvEmpty.visibility = View.VISIBLE
             }
 

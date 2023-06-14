@@ -45,7 +45,6 @@ class HistoryAdapter(
         }
 
         holder.btnDlt.setOnClickListener {
-
             val recordId = listHistory[position].id
             listener.onRecordDelete(recordId)
 
@@ -54,5 +53,6 @@ class HistoryAdapter(
 
     interface OnRecordDeleteListener {
         fun onRecordDelete(recordId: Int)
+
     }
 }

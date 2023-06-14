@@ -37,6 +37,7 @@ class HistoryViewModel: ViewModel() {
                         _listHistory.postValue(responseBody.result)
                     }else{
                         _isError.postValue("Failed to load data")
+
                     }
                 }else{
                     _isLoading.postValue(false)
