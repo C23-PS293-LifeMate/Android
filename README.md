@@ -13,6 +13,9 @@ to users by learning about their history and preferences.
 
 <br/>
 
+![Frame 2](https://github.com/agungdwi/Moviedb/assets/89433301/e83d5333-16bc-411e-9b89-bd55d90d9739)
+
+
 # Background
 <!-- > Choice overload is an adverse effect of too many available choices on our decision-making ability.
 > 
